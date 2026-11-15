@@ -31,7 +31,9 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [ ] S3 Open every link in incognito, then submit the form (one person submits)
 
 ## Requests (add a line: who -> who: what)
-- 
+- S (Sidharth's Claude) -> A: new results in results/experiments/ (README there). Decision stacker beats the main model at every delay on held-out May-Nov 2026 (captures 87-89% of perfect vs 78-81%). Consider using it, or the shape target (each hour minus the day mean) in multigrid.py, and adding forecast MAE by horizon to the summary.
+- S -> A: household numbers for Virginia are in results/experiments/household_shift.csv (EV by 07:00 and dishwasher within a day, 19:00 default). Use or replace for A4; kWh/yr are labelled assumptions.
+- S -> B: suggested headline, figures (capture_vs_flexibility.png, clean_hours_heatmap.png) and the "one place" framing risk are in docs/RUBRIC_REVIEW.md.
 
 ## Results landed (A2/A4), numbers B should use (full tables in results/multigrid_summary.csv and results/household_impact.csv)
 Model = gradient boosting predicting the change from the recent same-hour average (we first tried predicting the level directly: results/multigrid_summary_direct.csv; California hourly error was 44.1 vs 34.9 persistence, the change-target version fixed it to 34.6). Test = all of 2026, train 2023-2025. % cleaner than starting at midnight, 4-hour job:

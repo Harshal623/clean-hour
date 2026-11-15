@@ -3,7 +3,7 @@
 **Track:** Climate
 **Team:** Harshal Mahadik, Aarush Gutha, Sidharth Mantri (TJHSST)
 **Code:** this repo. Notebook with outputs: `notebooks/loudoun_carbon_scheduler.ipynb`. Demo: `python app/app.py`.
-
+poop
 ## The problem
 Loudoun County, Virginia hosts the densest cluster of data centers in the world, and AI training and batch jobs run 24/7 on the grid that serves them. The grid's carbon intensity (grams of CO2 per kWh) changes hour to hour as gas, coal and nuclear plants ramp. A data-center operations lead who can delay a flexible job by half a day or more can run it in a cleaner window, if they can predict tomorrow's hours. We test whether an ML forecast beats simple rules for that decision.
 

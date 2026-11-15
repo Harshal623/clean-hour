@@ -1,0 +1,127 @@
+{
+ "variant": "v1_hpo",
+ "grid": "gb",
+ "val_baseline": 87.87194293478261,
+ "val_best": {
+  "max_depth": 7,
+  "learning_rate": 0.03,
+  "min_samples_leaf": 100,
+  "val": 86.0180027173913
+ },
+ "adopted_on_validation": true,
+ "chosen": {
+  "max_depth": 7,
+  "learning_rate": 0.03,
+  "min_samples_leaf": 100
+ },
+ "val_table": [
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 86.32370923913044
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 87.3756793478261
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 86.98131793478261
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 300,
+   "val": 86.47961956521739
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 86.73980978260869
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 86.26222826086956
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 86.35971467391305
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 86.77105978260869
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 86.0180027173913
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 86.91610054347825
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 87.29008152173913
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 87.80706521739131
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 87.18002717391303
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 300,
+   "val": 87.35461956521739
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 86.72010869565217
+  }
+ ],
+ "test": {
+  "24": {
+   "base": 85.51711783439491,
+   "variant": 85.60748407643312,
+   "diff": 0.09036624203821655,
+   "lo": -0.6930732484076433,
+   "hi": 0.9631369426751598
+  },
+  "72": {
+   "base": 70.52945859872611,
+   "variant": 70.140525477707,
+   "diff": -0.38893312101910826,
+   "lo": -1.1648984872611465,
+   "hi": 0.43839570063694305
+  }
+ },
+ "test_days": 314,
+ "seconds": 32
+}

@@ -41,6 +41,8 @@ Each is a separate question a judge can understand; each is cheap and honest. Pi
 - [ ] E8 `exp/user-test` [human + any agent]: 10-minute session with one parent or neighbour on the app; record what confused them and one quote in docs/experiments/user-test.md. Highest value for the Clarity and Impact criteria.
 - [ ] E9 `exp/flood-backup` [parked]: only if the main project is found to leak. Data feasibility is already in DECISION.md.
 
+- [x] E10 `exp/model-variants` [A, MERGED: TIE x3 (hyperparameters, features, blend), LOSS x1 (quantile, Britain at 72 h); production model unchanged; docs/experiments/model-variants.md]
+
 ### Phase 2: merge window (Sun noon to 6 PM) [A merges]
 - [ ] 2.1 Merge branches in order of verdict value: E1, E4, E5, E3, E2, E6, E7, E8 (skip any failing the gate).
 - [ ] 2.2 After each merge A updates README Results/Related-work with ONLY numbers copied from the merged results csv, runs scripts/check.py, pushes.

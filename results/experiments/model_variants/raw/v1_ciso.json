@@ -1,0 +1,123 @@
+{
+ "variant": "v1_hpo",
+ "grid": "ciso",
+ "val_baseline": 192.03148485223858,
+ "val_best": {
+  "max_depth": 3,
+  "learning_rate": 0.03,
+  "min_samples_leaf": 50,
+  "val": 192.11486232773206
+ },
+ "adopted_on_validation": false,
+ "chosen": {},
+ "val_table": [
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 193.03604862054306
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 192.9683775595695
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 192.37285236436514
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 300,
+   "val": 192.7198673154345
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 192.76621924391372
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 192.11486232773206
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 192.88860427734727
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 192.61401995768495
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 192.99462956242797
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 192.51471261907108
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 192.68304102570045
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 192.94578928787917
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 192.78103835507565
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 300,
+   "val": 192.37245845521124
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 192.61478241946355
+  }
+ ],
+ "test": {
+  "24": {
+   "base": 99.7073753241983,
+   "variant": 99.7073753241983,
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  "72": {
+   "base": 90.14157818952714,
+   "variant": 90.14157818952714,
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  }
+ },
+ "test_days": 314,
+ "seconds": 32
+}

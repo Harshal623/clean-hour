@@ -1,0 +1,127 @@
+{
+ "variant": "v1_hpo",
+ "grid": "erco",
+ "val_baseline": 254.53010456464,
+ "val_best": {
+  "max_depth": 7,
+  "learning_rate": 0.05,
+  "min_samples_leaf": 50,
+  "val": 251.6631580792224
+ },
+ "adopted_on_validation": true,
+ "chosen": {
+  "max_depth": 7,
+  "learning_rate": 0.05,
+  "min_samples_leaf": 50
+ },
+ "val_table": [
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 253.02220473819347
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 253.2752269069939
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 253.48733745698817
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 300,
+   "val": 254.46836645294582
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 253.38558448468598
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 253.50200397952995
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 252.48521198399249
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 251.6631580792224
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 252.8264248888957
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 252.1739555087648
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 253.709562992266
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 253.73780023373257
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 253.34514184060575
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 300,
+   "val": 253.56085282103186
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 252.05781736563333
+  }
+ ],
+ "test": {
+  "24": {
+   "base": 237.79126126434352,
+   "variant": 237.02517006194273,
+   "diff": -0.76609120240074,
+   "lo": -1.958753149230553,
+   "hi": 0.2639689575868679
+  },
+  "72": {
+   "base": 220.58490895985426,
+   "variant": 219.58617778486482,
+   "diff": -0.9987311749893654,
+   "lo": -2.581577761600888,
+   "hi": 0.6367117939913998
+  }
+ },
+ "test_days": 314,
+ "seconds": 32
+}

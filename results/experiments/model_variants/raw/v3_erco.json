@@ -1,0 +1,30 @@
+{
+ "variant": "v3_blend",
+ "grid": "erco",
+ "val_baseline": 254.53010456464,
+ "val_blend": 253.0523380065873,
+ "weights_fit_on_validation": {
+  "model": 0.5,
+  "history_only": 0.3,
+  "persistence": 0.2
+ },
+ "adopted_on_validation": true,
+ "test": {
+  "24": {
+   "base": 237.79126126434352,
+   "variant": 236.00560485721815,
+   "diff": -1.7856564071253735,
+   "lo": -3.739380667135011,
+   "hi": -0.09624365369722507
+  },
+  "72": {
+   "base": 220.58490895985426,
+   "variant": 219.11713339026323,
+   "diff": -1.4677755695910093,
+   "lo": -3.463670338600345,
+   "hi": 0.3921727918545084
+  }
+ },
+ "test_days": 314,
+ "seconds": 16
+}

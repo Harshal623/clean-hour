@@ -1,0 +1,21 @@
+variant,grid,region,adopted_on_validation,test_days,base_24,var_24,diff_24,lo_24,hi_24,base_72,var_72,diff_72,lo_72,hi_72,grid_win,significantly_worse
+v1_hpo,ciso,California,False,314,99.707,99.707,0.0,0.0,0.0,90.142,90.142,0.0,0.0,0.0,False,False
+v1_hpo,de,Germany,False,314,194.797,194.797,0.0,0.0,0.0,174.55,174.55,0.0,0.0,0.0,False,False
+v1_hpo,erco,Texas,True,314,237.791,237.025,-0.766,-1.959,0.264,220.585,219.586,-0.999,-2.582,0.637,False,False
+v1_hpo,gb,Great Britain,True,314,85.517,85.607,0.09,-0.693,0.963,70.529,70.141,-0.389,-1.165,0.438,False,False
+v1_hpo,pjm,Virginia,True,311,329.101,329.079,-0.023,-0.327,0.173,318.115,317.843,-0.272,-1.08,0.523,False,False
+v2_features,ciso,California,False,314,99.707,99.913,0.206,-0.079,0.534,90.142,89.223,-0.918,-2.227,0.439,False,False
+v2_features,de,Germany,False,314,194.797,194.359,-0.438,-1.082,0.457,174.55,173.53,-1.02,-2.774,0.894,False,False
+v2_features,erco,Texas,True,314,237.791,236.918,-0.873,-2.19,0.317,220.585,219.698,-0.887,-2.819,1.366,False,False
+v2_features,gb,Great Britain,True,314,85.517,85.399,-0.118,-1.178,0.86,70.529,70.431,-0.098,-1.162,0.955,False,False
+v2_features,pjm,Virginia,True,311,329.101,328.936,-0.165,-0.564,0.239,318.115,317.619,-0.497,-1.295,0.282,False,False
+v3_blend,ciso,California,True,314,99.707,99.458,-0.25,-0.494,-0.06,90.142,90.009,-0.132,-0.429,0.084,False,False
+v3_blend,de,Germany,True,314,194.797,194.121,-0.676,-3.126,2.783,174.55,175.529,0.979,-2.113,3.748,False,False
+v3_blend,erco,Texas,True,314,237.791,236.006,-1.786,-3.739,-0.096,220.585,219.117,-1.468,-3.464,0.392,False,False
+v3_blend,gb,Great Britain,True,314,85.517,84.854,-0.663,-1.179,-0.132,70.529,71.002,0.472,-0.533,1.618,False,False
+v3_blend,pjm,Virginia,True,311,329.101,328.368,-0.733,-1.408,-0.251,318.115,317.794,-0.321,-1.162,0.649,False,False
+v4_quantile,ciso,California,False,314,99.707,99.707,0.0,0.0,0.0,90.142,90.142,0.0,0.0,0.0,False,False
+v4_quantile,de,Germany,False,314,194.797,194.797,0.0,0.0,0.0,174.55,174.55,0.0,0.0,0.0,False,False
+v4_quantile,erco,Texas,True,314,237.791,238.133,0.341,-0.901,1.592,220.585,221.471,0.886,-1.049,3.067,False,False
+v4_quantile,gb,Great Britain,True,314,85.517,85.751,0.234,-1.025,1.156,70.529,72.031,1.502,0.221,2.911,False,True
+v4_quantile,pjm,Virginia,True,311,329.101,328.868,-0.233,-0.802,0.251,318.115,318.068,-0.048,-1.011,0.982,False,False

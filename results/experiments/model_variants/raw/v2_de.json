@@ -1,0 +1,35 @@
+{
+ "variant": "v2_features",
+ "grid": "de",
+ "val_baseline": 201.3189640248969,
+ "val_variant": 202.1279988639617,
+ "adopted_on_validation": false,
+ "n_features": 22,
+ "features_added": [
+  "ci_hod_mean14d",
+  "ci_hod_std14d",
+  "ci_hod_min7d",
+  "gas_share_lag",
+  "coal_share_lag",
+  "wind_share_lag",
+  "solar_share_lag"
+ ],
+ "test": {
+  "24": {
+   "base": 194.7971347116988,
+   "variant": 194.3592071194343,
+   "diff": -0.43792759226451694,
+   "lo": -1.0816639652066329,
+   "hi": 0.45741968637254105
+  },
+  "72": {
+   "base": 174.54953330042946,
+   "variant": 173.52996050317878,
+   "diff": -1.0195727972506465,
+   "lo": -2.7742234983963945,
+   "hi": 0.8941278493039427
+  }
+ },
+ "test_days": 314,
+ "seconds": 15
+}

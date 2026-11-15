@@ -49,6 +49,9 @@ Same method, same split, % cleaner than starting at midnight with 24 hours of fl
 ## Related work (what is and is not new)
 Shifting flexible computing to cleaner hours is well studied: Wiesner et al., "Let's Wait Awhile" (Middleware 2021, arXiv 2110.13234) analysed Germany, Great Britain, France and California in 2020; LiteCast (Joseph, Savadi and Souza, arXiv 2511.06187) reports across 50 regions that preserving the ranking of hours matters more than forecast error. We do not claim these ideas as new. What we add is a held-out 2026 test with simple baselines and honest intervals, a household framing, a Virginia/Loudoun focus, and a boundary condition: the benefit of ranking-focused training appeared only in the flattest grid.
 
+## Robustness
+Training on 2023-2024 and testing on all of 2025 gives the same pattern (the model beats the simple rule in all five grids with 3 days of slack and ties it in Texas and Germany at 24 h; `docs/experiments/year-robustness.md`), but absolute savings differ by year (California 29.5% in 2025 vs 54.7% in 2026, Virginia 4.3% vs 6.9%), so read the percentages as one-year measurements.
+
 ## Limits
 Average, not marginal, emissions of a whole regional grid. A coarse estimate of marginal intensity (net-load regression fitted on 2023-2025; `docs/experiments/estimated-marginal.md`) agrees with our advice in Virginia and California (68.8% and 89.8% of 2026 days) but not in Texas or Germany, where it suggests the benefit of shifting at the margin could be smaller or absent; that estimate is a proxy and unvalidated. The savings baseline (midnight) is deliberately naive. The demo replays 2026 days; a live version needs live grid feeds. No user test has been done yet.
 

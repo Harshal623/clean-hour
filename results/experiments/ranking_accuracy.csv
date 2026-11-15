@@ -1,0 +1,5 @@
+method,spearman_mean,cleanest4_hit_rate_%
+persistence,0.6784,53.6977
+climatology,0.5364,21.1415
+model,0.7367,51.045
+model_history_only,0.7503,58.3601

@@ -1,0 +1,7 @@
+method,spearman_tomorrow,cleanest4_hit_%
+persistence,0.7847,57.9843
+climatology,0.5973,22.2513
+model,0.7723,46.3351
+model_history_only,0.8216,60.3403
+average of 3 (no training),0.8347,62.1728
+decision stacker,0.8369,59.0314

@@ -1,0 +1,19 @@
+period,scenario,method,days,default_g_per_kWh,saved_g_per_kWh,lo,hi,saved_%,kg_per_year_low,kg_per_year_high,days_worse_than_default_%
+Jan-Nov 2026,"EV, finish by 07:00",perfect,311,367.61,20.384,18.267,22.726,5.545,50.959,81.535,0.0
+Jan-Nov 2026,"EV, finish by 07:00",repeat yesterday,311,367.61,17.597,15.087,20.3,4.787,43.993,70.388,7.717
+Jan-Nov 2026,"EV, finish by 07:00",hour-of-week average,311,367.61,17.945,15.739,20.315,4.882,44.862,71.78,9.646
+Jan-Nov 2026,"EV, finish by 07:00",original model,311,367.61,18.689,16.325,21.271,5.084,46.723,74.757,9.968
+Jan-Nov 2026,"dishwasher, within a day",perfect,311,366.262,43.572,40.715,46.589,11.896,6.536,13.072,0.0
+Jan-Nov 2026,"dishwasher, within a day",repeat yesterday,311,366.262,34.955,31.659,38.486,9.544,5.243,10.486,6.752
+Jan-Nov 2026,"dishwasher, within a day",hour-of-week average,311,366.262,24.136,21.438,26.879,6.59,3.62,7.241,9.968
+Jan-Nov 2026,"dishwasher, within a day",original model,311,366.262,36.756,33.726,39.869,10.036,5.513,11.027,2.572
+May-Nov 2026,"EV, finish by 07:00",perfect,191,372.198,24.407,22.562,26.91,6.558,61.018,97.628,0.0
+May-Nov 2026,"EV, finish by 07:00",repeat yesterday,191,372.198,22.529,20.51,25.3,6.053,56.322,90.115,2.094
+May-Nov 2026,"EV, finish by 07:00",hour-of-week average,191,372.198,22.029,20.161,24.531,5.919,55.073,88.117,2.618
+May-Nov 2026,"EV, finish by 07:00",original model,191,372.198,23.436,21.547,26.026,6.297,58.591,93.745,2.618
+May-Nov 2026,"EV, finish by 07:00",decision-trained model,191,372.198,23.45,21.591,26.026,6.3,58.626,93.801,2.618
+May-Nov 2026,"dishwasher, within a day",perfect,191,370.727,45.689,41.978,48.923,12.324,6.853,13.707,0.0
+May-Nov 2026,"dishwasher, within a day",repeat yesterday,191,370.727,38.735,34.602,42.411,10.448,5.81,11.62,2.094
+May-Nov 2026,"dishwasher, within a day",hour-of-week average,191,370.727,28.19,25.308,31.003,7.604,4.228,8.457,4.188
+May-Nov 2026,"dishwasher, within a day",original model,191,370.727,37.886,33.738,41.344,10.219,5.683,11.366,0.524
+May-Nov 2026,"dishwasher, within a day",decision-trained model,191,370.727,41.564,37.596,44.989,11.211,6.235,12.469,0.524

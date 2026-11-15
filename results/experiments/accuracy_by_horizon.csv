@@ -1,0 +1,17 @@
+method,horizon,MAE,RMSE,bias,skill_vs_persistence_%
+persistence,all,21.449,27.729,0.41,0.0
+persistence,day 1 (6-30 h),17.436,22.69,0.194,0.0
+persistence,day 2 (30-54 h),22.292,28.454,0.393,0.0
+persistence,day 3 (54-82 h),24.167,30.851,0.611,0.0
+climatology,all,29.724,36.139,-3.416,-38.579
+climatology,day 1 (6-30 h),29.81,36.201,-3.029,-70.972
+climatology,day 2 (30-54 h),29.829,36.215,-2.824,-33.813
+climatology,day 3 (54-82 h),29.559,36.02,-4.257,-22.314
+model,all,13.838,17.365,4.14,35.486
+model,day 1 (6-30 h),12.817,16.036,3.869,26.489
+model,day 2 (30-54 h),14.011,17.515,4.516,37.145
+model,day 3 (54-82 h),14.564,18.305,4.05,39.737
+model_history_only,all,18.844,23.876,-1.812,12.145
+model_history_only,day 1 (6-30 h),15.473,19.632,-1.978,11.256
+model_history_only,day 2 (30-54 h),19.507,24.263,-1.698,12.491
+model_history_only,day 3 (54-82 h),21.165,26.691,-1.768,12.422

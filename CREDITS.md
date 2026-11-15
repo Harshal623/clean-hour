@@ -25,4 +25,6 @@ Briefs
 - Veritas AI Hackathon 2026 Project Briefs (AI + Climate track rules: time split, persistence baseline).
 
 AI tools
-- Claude Code (Anthropic), used by the team for brainstorming, data loaders, evaluation code, the Gradio app and drafting the write-up. The team reviewed the results and can explain every part.
+- Claude Code and Claude chat (Anthropic), used by the team for brainstorming, data loaders, evaluation code, the Gradio app and drafting the write-up. https://claude.ai
+- Perplexity, used by Aarush for the independent code review and related-work research (docs/CODE_REVIEW.md). https://www.perplexity.ai
+- The team reviewed every result and can explain every part.

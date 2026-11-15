@@ -1,0 +1,118 @@
+{
+ "slip24_season": [
+  {
+   "season": "DJF",
+   "days": 59.0,
+   "immediate": 375.633,
+   "climatology": 370.851,
+   "model": 356.191,
+   "oracle": 350.944,
+   "model-clim": -14.66
+  },
+  {
+   "season": "JJA",
+   "days": 92.0,
+   "immediate": 371.802,
+   "climatology": 360.837,
+   "model": 352.717,
+   "oracle": 345.924,
+   "model-clim": -8.12
+  },
+  {
+   "season": "MAM",
+   "days": 92.0,
+   "immediate": 326.015,
+   "climatology": 311.27,
+   "model": 294.999,
+   "oracle": 289.979,
+   "model-clim": -16.271
+  },
+  {
+   "season": "SON",
+   "days": 68.0,
+   "immediate": 346.136,
+   "climatology": 335.875,
+   "model": 325.321,
+   "oracle": 320.093,
+   "model-clim": -10.554
+  }
+ ],
+ "slip24_daytype": [
+  {
+   "daytype": "weekday",
+   "days": 223.0,
+   "immediate": 355.157,
+   "climatology": 351.99,
+   "model": 335.276,
+   "oracle": 329.354,
+   "model-clim": -16.713
+  },
+  {
+   "daytype": "weekend",
+   "days": 88.0,
+   "immediate": 348.849,
+   "climatology": 318.861,
+   "model": 317.731,
+   "oracle": 312.833,
+   "model-clim": -1.13
+  }
+ ],
+ "slip72_season": [
+  {
+   "season": "DJF",
+   "days": 59.0,
+   "immediate": 375.633,
+   "climatology": 366.625,
+   "model": 347.194,
+   "oracle": 335.549,
+   "model-clim": -19.431
+  },
+  {
+   "season": "JJA",
+   "days": 92.0,
+   "immediate": 371.802,
+   "climatology": 349.643,
+   "model": 342.242,
+   "oracle": 335.285,
+   "model-clim": -7.401
+  },
+  {
+   "season": "MAM",
+   "days": 92.0,
+   "immediate": 326.015,
+   "climatology": 294.748,
+   "model": 279.049,
+   "oracle": 271.635,
+   "model-clim": -15.699
+  },
+  {
+   "season": "SON",
+   "days": 68.0,
+   "immediate": 346.136,
+   "climatology": 323.956,
+   "model": 313.526,
+   "oracle": 304.249,
+   "model-clim": -10.43
+  }
+ ],
+ "slip72_daytype": [
+  {
+   "daytype": "weekday",
+   "days": 223.0,
+   "immediate": 355.157,
+   "climatology": 336.894,
+   "model": 321.028,
+   "oracle": 312.817,
+   "model-clim": -15.866
+  },
+  {
+   "daytype": "weekend",
+   "days": 88.0,
+   "immediate": 348.849,
+   "climatology": 316.098,
+   "model": 311.066,
+   "oracle": 301.873,
+   "model-clim": -5.032
+  }
+ ]
+}

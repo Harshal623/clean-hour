@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/*.csv
+data/flood/
+results/test_predictions.pkl
+.ipynb_checkpoints/

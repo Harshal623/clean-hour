@@ -1,0 +1,17 @@
+{
+  "hourly_mae": {
+    "persistence (same hour yesterday)": 17.30786578276972,
+    "same hour last week": 25.855894115301506,
+    "month x hour climatology": 23.3835871204667,
+    "gradient boosting": 12.479503338233368
+  },
+  "schedule_gco2_kwh": {
+    "run at midnight (naive)": 353.0918720899464,
+    "run 2-6am (night rule)": 348.8735526522245,
+    "persistence": 330.2352400015966,
+    "climatology": 339.52164802131006,
+    "model": 329.22142246475624,
+    "oracle": 324.88576053178025
+  },
+  "test_days": 315
+}

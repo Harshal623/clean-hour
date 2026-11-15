@@ -1,7 +1,7 @@
 # Clean-Hour: when should a Loudoun data center run its flexible AI jobs?
 
 **Track:** Climate
-**Team:** <TEAM NAMES HERE>
+**Team:** Harshal Mahadik, Aarush Gutha, Sidharth Mantri (TJHSST)
 **Code:** this repo. Notebook with outputs: `notebooks/loudoun_carbon_scheduler.ipynb`. Demo: `python app/app.py`.
 
 ## The problem

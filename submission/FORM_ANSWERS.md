@@ -21,10 +21,13 @@ Demo Video Link
 <paste YouTube unlisted or Drive link after recording; script in docs/VIDEO_SCRIPT.md>
 
 Building As
-<Individual / Team: fill in>
+Team of 3
 
-Your Full Name / School / Email (every teammate, exactly as for certificates)
-<FILL IN. Not known to the assistant.>
+Your Full Name / School / Email (every teammate; one person submits for all)
+- Harshal Mahadik, TJHSST, email: <ADD>
+- Aarush Gutha, TJHSST, email: <ADD>
+- Sidharth Mantri, TJHSST, email: <ADD>
+(Confirm the exact spelling and school name as you want it on certificates. Emails were not provided, so type them on the form yourselves.)
 
 New to AI?
 <answer truthfully>

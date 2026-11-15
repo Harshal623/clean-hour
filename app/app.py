@@ -170,5 +170,30 @@ with gr.Blocks(title="Clean-Hour") as demo:
     surprise.click(lambda: DAY_LABELS[int(np.random.randint(0, len(DAY_LABELS)))], None, day)
     demo.load(update, ins, outs)
 
+# ---- Live tab (Great Britain, NESO official forecast; falls back gracefully offline) ----
+try:
+    sys_path_added = False
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("clean_hour_live", os.path.join(HERE, "live.py"))
+    _live = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_live)
+except Exception:  # live mode must never break the replay app
+    _live = None
+
+if _live is not None:
+    with gr.Blocks(title="Clean-Hour live") as live_demo:
+        gr.Markdown("### Live: the next 48 hours in Great Britain\nUses the official National Energy System Operator forecast "
+                    "(it beat our own model there in 2026 tests). Needs internet.")
+        with gr.Column():
+            l_app = gr.Dropdown(list(_live.APPLIANCES), value="Charge my electric car", label="What do you want to run?")
+            l_wait = gr.Radio(list(_live.WAIT), value="Up to 24 hours", label="How long can it wait?")
+            l_go = gr.Button("Find the cleanest time now", variant="primary")
+            l_out = gr.HTML()
+        l_go.click(_live.advise_live, [l_app, l_wait], l_out)
+    app = gr.TabbedInterface([demo, live_demo], ["Replay: Virginia and 4 more regions (tested on 2026)", "Live: Great Britain"],
+                             title=None)
+else:
+    app = demo
+
 if __name__ == "__main__":
-    demo.launch(theme=gr.themes.Soft(primary_hue="green"))
+    app.launch(theme=gr.themes.Soft(primary_hue="green"))

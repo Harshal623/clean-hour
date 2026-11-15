@@ -1,0 +1,16 @@
+# Data integrity audit
+
+## 1. Gaps, last timestamp, filling
+- The EIA-930 file for 2026 Jul-Dec contains placeholder rows through the end of the local day (Nov 14 local = 2026-11-15 05:00 UTC) that carry only a demand forecast. Our loader kept those rows, which is why the cached file had 33,936 rows "through the future".
+- Real last hour of fuel data: 2026-11-14 05:00 UTC. We now cut at that hour (`LAST_REAL` in src/sweep.py): 33,912 hourly rows, 2023-01-01 06:00 to 2026-11-14 05:00 UTC.
+- Truly missing carbon-intensity hours: 4 (one per November, 2023-2025, and one more); 28 placeholder rows removed above (24 future + the 4).
+- No interpolation in the final pipeline (src/sweep.py, src/final.py): missing hours stay NaN; any test day with a missing target hour is dropped (3 of 314 test days dropped). The early src/baseline.py did interpolate up to 3 hours; it is superseded and not used for reported results.
+
+## 2. Schema change and emission factors
+- From the 2024 Jul-Dec file EIA split hydro ("Hydropower and Pumped Storage" -> "Hydropower Excluding Pumped Storage" + "Pumped Storage"), solar and wind into with/without battery storage, and added Battery/Other/Unknown Energy Storage and Geothermal columns.
+- Mapping used (src/load_data.py FUELS): hydro = old Hydro or new Hydro-excl-pumped; solar = Solar + Solar w/o + Solar with battery; wind likewise; other = Other Fuel Sources + Geothermal; storage columns excluded; 'unknown' is empty throughout.
+- Check: monthly fuel shares are continuous across Jun/Jul 2024 (solar 2.6%->2.2%, hydro 1.8%->1.7%, wind 2.9%->1.4% = normal summer wind drop); mean CI 4 weeks before/after 2024-07-01 = 366.2 / 382.0 (seasonal rise, no jump at the boundary; the March-Oct 2024 monthly means rise and fall smoothly). Fuel total / demand median ratio 1.03-1.05 in every year. Plot: results/ci_schema_changeover.png.
+- Emission factors (gCO2e/kWh, lifecycle): coal 820, gas 490, nuclear 12, hydro 24, solar 41, wind 11 from IPCC AR5 WG3 Annex III (Schlomer et al. 2014; the 41 is the rooftop-PV median, utility PV is 48). Oil 650 and other 230 are OUR ASSUMPTIONS (not in that table). Sensitivity: results/ef_sensitivity.csv.
+
+## 3. Leakage audit (features at decision time = 18:00 local on day D-1)
+All carbon-intensity features come from hours at or before the decision hour: same-clock-hour latest observation, same hour a week earlier, 7-day same-hour mean, 24h and 7d means, last value. Targets are strictly later. Climatology uses 2023-2025 only; the test year is 2026; no shuffling; hyperparameters are fixed (no tuning on test; the abstain threshold is tuned on 2025-H2 validation). Two covariates carry residual risk and are flagged: (a) Open-Meteo's "historical forecast" archive is stitched from model runs and its lead time is shorter than the 6-80 h we assume, so weather is mildly optimistic; (b) EIA's "Demand Forecast" vintage is not documented as day-ahead. Because of this we also report a history-only + calendar model with no weather or demand forecast: it still beats climatology at every slip (results above), so the conclusion does not depend on those two inputs. Dominion-zone demand is used only at the same clock hour of the latest known day.

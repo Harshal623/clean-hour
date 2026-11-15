@@ -22,7 +22,7 @@ Clock (ET): now = Sat Nov 14 night. Hard dates: experiments freeze **Sun 3 PM**,
 7. Never force-push. Never rewrite main. If a merge conflicts, the branch owner rebases onto main (`git rebase origin/main`), re-runs check.py, and pushes again.
 
 ### Phase 0: harden main (A, now to Sat 11 PM)
-- [ ] 0.1 Land results/ef_sensitivity_multigrid.csv (needs the slow EIA fuel download; running) [A]
+- [x] 0.1 [A, done: conclusions unchanged under 5 emission-factor sets] Land results/ef_sensitivity_multigrid.csv
 - [ ] 0.2 Execute notebooks/clean_hour.ipynb with outputs and commit [A]
 - [x] 0.3 [A, done: nanargmin fix, rerun reproduces everything to 0.02 g/kWh; README numbers unchanged] Known minor issue: Virginia persistence has 3 NaN rows on 2026-11-03 (one missing hour); fix best_start to ignore NaN windows, rerun multigrid, update README numbers if they move [A]
 - [x] 0.4 scripts/check.py health check [A]

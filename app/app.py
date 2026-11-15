@@ -132,11 +132,12 @@ def scorecard(region, wait):
 
 with gr.Blocks(title="Clean-Hour") as demo:
     gr.Markdown("# 🌍 Clean-Hour\n### When is electricity cleanest? Run big appliances then.\n"
+                "Built for Northern Virginia (home of Loudoun's data centers); also tested in California, Texas, Germany and Britain. "
                 "Power plants burn more coal and gas at some hours than others. Pick your region and "
                 "appliance and we'll tell you the cleanest time to start it. "
                 "(Demo: replays real days from 2026.)")
     with gr.Column(scale=1):
-        region = gr.Dropdown(list(REGIONS), value="California, USA", label="1. Where do you live?")
+        region = gr.Dropdown(list(REGIONS), value="Virginia / Mid-Atlantic, USA", label="1. Where do you live?")
         appliance = gr.Dropdown(list(APPLIANCES), value="Charge my electric car", label="2. What do you want to run?")
         wait = gr.Radio(list(WAIT), value="Until tomorrow (24 hours)", label="3. How long can it wait?")
         with gr.Row():

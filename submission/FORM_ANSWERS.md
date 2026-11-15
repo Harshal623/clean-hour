@@ -3,10 +3,10 @@
 Form: https://airtable.com/appypCyHN77hElIcS/shrXA5VBFdugmoXl6   Deadline: Sun Nov 15, 11:59 PM ET (submit a first version 2+ hours earlier; resubmit freely).
 
 Project Title
-Clean-Hour: When Is Electricity Cleanest?
+Clean-Hour: Cleaner Hours for Northern Virginia Homes and Loudoun Data Centers
 
 One-Sentence Pitch
-Clean-Hour tells a household in California, Texas, Virginia, Germany or Great Britain the cleanest time to charge the car or run the dishwasher, and honestly tests where an ML forecast beats a simple "run at midday" rule (mostly when you can wait 2-3 days, and in wind-driven Britain).
+Clean-Hour forecasts when Northern Virginia's power grid is cleanest so families and Loudoun's data centers can start flexible jobs at cleaner hours, and we test honestly where a forecast beats simple rules and whether the method works on four other grids.
 
 Track
 Climate
@@ -33,7 +33,7 @@ New to AI?
 <answer truthfully>
 
 What we added beyond the suggested projects (paste in "Anything Else" or write-up field)
-Our own idea, not a suggested project. Own user: ordinary households (EV, dishwasher, laundry), with a plain-English app. Own data: five grids on three continents (EIA-930 for Virginia, California and Texas; Energy-Charts for Germany; NESO for Great Britain) plus an hourly weather-forecast archive for each. Own question: where does an ML forecast beat simple rules, and how long must a household be able to wait before it matters? We report four baselines (start at midnight, persistence, hour-of-week average, perfect hindsight), 95% block-bootstrap intervals, household CO2 impact, failure days per grid, a model fix we found by testing (first version was worse than persistence in California), and a leakage audit. Weak results are reported: in Texas and Germany the model ties the simple rule for same-day shifting, Britain's official NESO forecast beats ours, and the signal is the regional average, not marginal emissions.
+Our own idea, not a suggested project. Own place and user: Northern Virginia homes and the Loudoun data-center corridor (PJM grid). Own data: PJM fuel mix, Dominion-zone demand and a forecast-weather archive for Ashburn. Own questions: how long must a job be able to wait before a forecast beats simple rules; is a better hourly forecast really a better choice of hours (a second-stage model trained to rank hours captured 87-89% of the best possible saving vs 78-81%); and does the method transfer to California, Texas, Germany and Great Britain? We report four baselines (start at midnight, persistence, hour-of-week average, perfect hindsight), 95% block-bootstrap intervals, household and data-center impact with stated assumptions, failure days, a model bug we found (first version worse than persistence in California), and a leakage audit. Weak results are reported: for short waits the model is nearly tied with "repeat yesterday", Britain's official NESO forecast beats ours, and the signal is the PJM-wide average, not Loudoun-specific or marginal.
 
 Credits
 - EIA Hourly Electric Grid Monitor (EIA-930), PJM, CISO and ERCOT fuel mix and demand: https://www.eia.gov/electricity/gridmonitor/

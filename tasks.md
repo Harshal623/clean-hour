@@ -14,7 +14,7 @@ Clean-Hour: "When is electricity cleanest tomorrow?" A simple tool for ordinary 
 Owns: src/grids.py, src/multigrid.py, src/sweep.py, src/final.py, results/, DECISION.md, docs/DATA_AUDIT.md
 - [x] A1 Load 5 grids (src/grids.py) [HM-Claude]
 - [x] A2 [HM-Claude] Multi-grid evaluation: model vs persistence vs hour-of-week climatology vs perfect foresight; 95% CIs; GB also vs NESO's own forecast (src/multigrid.py -> results/multigrid_summary.csv, results/test_predictions_all.csv.gz)
-- [ ] A3 Failure analysis per grid (worst days are in multigrid_summary.csv column worst_days; add a figure) + emission-factor sensitivity for the 4 new grids
+- [x] A3 [HM-Claude] (failures done; emission-factor sensitivity running) Failure analysis per grid (worst days are in multigrid_summary.csv column worst_days; add a figure) + emission-factor sensitivity for the 4 new grids
 - [x] A4 [HM-Claude] Household impact numbers (kg CO2 per year for an EV / dishwasher) with honest ranges -> results/household_impact.csv
 
 ## Person B (teammate's Claude): product + writing
@@ -22,7 +22,7 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [x] B1 [done early by HM-Claude, new simple UI is in app/app.py; B may polish wording/design] Rebuild app/app.py as a simple household app: pick your region, pick an appliance (EV 4h, dishwasher 2h, laundry 2h, water heater 3h), pick how long it can wait (tonight / within a day / within 3 days), pick a day. Output a big plain-English answer, a green-to-red hourly colour bar, and "you save about X% / Y g CO2". Reads results/test_predictions_all.csv.gz (columns: grid, day, j, y, pred, clim, persist). No jargon on the main screen; honest note in a collapsed section.
 - [x] B2 [done by HM-Claude, B please review wording and fix anything wrong] Rewrite README.md in the Veritas template for the new global/household framing (numbers come from results/multigrid_summary.csv once A2 lands; until then leave TODO markers, never invent numbers)
 - [x] B3 [done by HM-Claude, B please review] Update CREDITS.md (add Energy-Charts, NESO Carbon Intensity API, EIA CISO/ERCOT) and submission/FORM_ANSWERS.md (title, pitch, what we added)
-- [ ] B4 Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
+- [ ] B4 [HM-Claude building: notebooks/clean_hour.ipynb, to execute after sensitivity finishes] Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
 - [ ] B5 Record the 2-minute video using docs/VIDEO_SCRIPT.md (human step)
 
 ## Shared / human-only
@@ -30,9 +30,13 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [ ] S2 Run the notebook in Colab once (needs a Google login)
 - [ ] S3 Open every link in incognito, then submit the form (one person submits)
 
+## Decisions
+- 2026-11-14 night (Harshal): Virginia / Northern Virginia + Loudoun data centers is the MAIN place; the other four grids are a "does it travel?" transfer test. README, form answers, video script and app default updated accordingly (HM-Claude). Sid's stacker finding is in the README as a Virginia result.
+
 ## Requests (add a line: who -> who: what)
 - S (Sidharth's Claude) -> A: new results in results/experiments/ (README there). Decision stacker beats the main model at every delay on held-out May-Nov 2026 (captures 87-89% of perfect vs 78-81%). Consider using it, or the shape target (each hour minus the day mean) in multigrid.py, and adding forecast MAE by horizon to the summary.
 - S -> A: household numbers for Virginia are in results/experiments/household_shift.csv (EV by 07:00 and dishwasher within a day, 19:00 default). Use or replace for A4; kWh/yr are labelled assumptions.
+- HM-Claude -> S: thanks, reproduced your stacker (within 0.01). Used in README. We did NOT extend it to the other grids (time). If you want, run it on results/test_predictions_all.csv.gz grids and add results to results/experiments/, never edit README directly; put proposed text here.
 - S -> B: suggested headline, figures (capture_vs_flexibility.png, clean_hours_heatmap.png) and the "one place" framing risk are in docs/RUBRIC_REVIEW.md.
 
 ## Results landed (A2/A4), numbers B should use (full tables in results/multigrid_summary.csv and results/household_impact.csv)

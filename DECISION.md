@@ -1,3 +1,5 @@
+> SUPERSEDED NOTE: the numbers below come from the first (level-target) Virginia model. The final multi-grid model (predicts the change from the recent same-hour average) gives slightly different values, e.g. 24 h: 329.1 vs 330.3 g/kWh; see README and results/multigrid_summary.csv. Conclusions are unchanged.
+
 # DECISION: carbon-aware scheduler SURVIVES. Flood project stays as backup, not built.
 
 Kill rule (set beforehand): model must beat hour-of-week climatology with a 95% CI that excludes zero at a slip a real operator could allow, AND we can name workloads with that flexibility.

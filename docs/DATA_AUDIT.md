@@ -3,7 +3,7 @@
 ## 1. Gaps, last timestamp, filling
 - The EIA-930 file for 2026 Jul-Dec contains placeholder rows through the end of the local day (Nov 14 local = 2026-11-15 05:00 UTC) that carry only a demand forecast. Our loader kept those rows, which is why the cached file had 33,936 rows "through the future".
 - Real last hour of fuel data: 2026-11-14 05:00 UTC. We now cut at that hour (`LAST_REAL` in src/sweep.py): 33,912 hourly rows, 2023-01-01 06:00 to 2026-11-14 05:00 UTC.
-- Truly missing carbon-intensity hours: 4 (one per November, 2023-2025, and one more); 28 placeholder rows removed above (24 future + the 4).
+- Truly missing carbon-intensity hours: 4 (one each in Nov 2023, Nov 2024, Nov 2025 and Nov 2026), left as NaN. Separately, the 24 placeholder rows after the last real hour were cut.
 - No interpolation in the final pipeline (src/sweep.py, src/final.py): missing hours stay NaN; any test day with a missing target hour is dropped (3 of 314 test days dropped). The early src/baseline.py did interpolate up to 3 hours; it is superseded and not used for reported results.
 
 ## 2. Schema change and emission factors

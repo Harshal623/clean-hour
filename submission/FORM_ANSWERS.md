@@ -15,7 +15,7 @@ Code Link
 https://github.com/Harshal623/clean-hour
 
 Write-up Link
-https://github.com/Harshal623/clean-hour/blob/main/README.md
+[https://github.com/Harshal623/clean-hour/blob/main/README.md](https://github.com/Harshal623/clean-hour/blob/main/submission/WRITEUP.md (one page, Veritas template; full detail in README.md))
 
 Demo Video Link
 <paste YouTube unlisted or Drive link after recording; script in docs/VIDEO_SCRIPT.md>
@@ -33,7 +33,7 @@ New to AI?
 <answer truthfully>
 
 What we added beyond the suggested projects (paste in "Anything Else" or write-up field)
-Our own idea, not a suggested project. Own place and user: Northern Virginia homes and the Loudoun data-center corridor (PJM grid). Own data: PJM fuel mix, Dominion-zone demand and a forecast-weather archive for Ashburn. Own questions: how long must a job be able to wait before a forecast beats simple rules; is a better hourly forecast really a better choice of hours (a second-stage model trained to rank hours captured 87-89% of the best possible saving vs 78-81%); and does the method transfer to California, Texas, Germany and Great Britain? We report four baselines (start at midnight, persistence, hour-of-week average, perfect hindsight), 95% block-bootstrap intervals, household and data-center impact with stated assumptions, failure days, a model bug we found (first version worse than persistence in California), and a leakage audit. Weak results are reported: for short waits the model is nearly tied with "repeat yesterday", Britain's official NESO forecast beats ours, and the signal is the PJM-wide average, not Loudoun-specific or marginal.
+Our own idea, not a suggested project. Own place and user: Northern Virginia homes and the Loudoun data-center corridor (PJM grid). Own data: PJM fuel mix, Dominion-zone demand and a forecast-weather archive for Ashburn. Own questions: how long must a job be able to wait before a forecast beats simple rules; is a better hourly forecast really a better choice of hours (a second-stage model trained to rank hours captured 91% of the best possible saving vs 85% for our final model in Virginia, and we show it does not transfer to the other four grids); and does the method transfer to California, Texas, Germany and Great Britain? We report four baselines (start at midnight, persistence, hour-of-week average, perfect hindsight), 95% block-bootstrap intervals, household and data-center impact with stated assumptions, failure days, a model bug we found (first version worse than persistence in California), and a leakage audit. Weak results are reported: for short waits the model is nearly tied with "repeat yesterday", Britain's official NESO forecast beats ours, and the signal is the PJM-wide average, not Loudoun-specific or marginal.
 
 Credits
 - EIA Hourly Electric Grid Monitor (EIA-930), PJM, CISO and ERCOT fuel mix and demand: https://www.eia.gov/electricity/gridmonitor/
@@ -44,7 +44,7 @@ Credits
 - NOAA CO-OPS station 8594900 (feasibility check of a backup idea only): https://tidesandcurrents.noaa.gov/
 - scikit-learn: https://scikit-learn.org/ ; pandas; NumPy; Matplotlib; joblib; Gradio: https://www.gradio.app/
 - No pretrained models.
-- AI tool: Claude Code (Anthropic), for brainstorming, code and drafting. Team reviewed everything.
+- AI tools: Claude Code and Claude chat (Anthropic), for brainstorming, code and drafting; Perplexity, for code review and related-work research. Team reviewed everything.
 
 ## Checklist before hitting Submit
 - [ ] Open the repo, README and video links in a private/incognito window; confirm they load without signing in.

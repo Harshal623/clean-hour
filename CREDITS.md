@@ -15,6 +15,7 @@ Emission factors
 
 Models and libraries
 - scikit-learn HistGradientBoostingRegressor https://scikit-learn.org/ ; pandas; NumPy; Matplotlib; joblib; Gradio https://www.gradio.app/ ; Jupyter/nbconvert.
+- PyTorch https://pytorch.org/ (Transformer encoder for experiment E11, trained on a free Google Colab T4 GPU). Ranking-loss idea (ListNet) from Cao et al., "Learning to Rank: From Pairwise Approach to Listwise Approach", ICML 2007.
 - No pretrained models.
 
 Related work consulted (cited in README, not used as code or data)

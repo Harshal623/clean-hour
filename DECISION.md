@@ -27,8 +27,8 @@ Kill rule: PASSED at every slip level of 12h or more.
 - 'Unsure, run now' rule (tau tuned on 2025-H2): no measurable gain (24h: tau=0, identical cost; 72h: 318.25 vs 318.21, acts on 97% of days). We report it as not helpful.
 - Signal is PJM-wide AVERAGE emissions, not Loudoun-specific and not marginal. Result is robust to emission-factor choice: model-clim stays between -11.9 and -20.2 g/kWh across 5 factor sets (results/ef_sensitivity.csv).
 
-## Who can actually use this flexibility
-12-24h: checkpointed AI training chunks, fine-tuning, embedding/batch-inference backfills, nightly ETL, video transcoding. 48-72h: backups and archival, model evaluation sweeps, simulation/HPC queues, data re-indexing. NOT usable: latency-sensitive inference, colocation tenants with SLAs, real-time services.
+## Who can actually use this flexibility (an assumption, not our finding)
+Which jobs can wait is NOT something we measured. Google's production carbon-aware system delays flexible work by up to a day (Radovanovic et al., arXiv 2106.11750), and one survey of Azure traces counts about 68% of core hours as delay-insensitive, an upper bound on deferrable work (see docs/experiments/workload-flexibility.md for sources and limits). Checkpointed training, backups and batch processing are plausible 12-24 h candidates; latency-sensitive inference and SLA-bound colocation are not. We do not know the real share of Loudoun's load, and 48-72 h slack is a "what if", not a typical case.
 
 ## Flood feasibility (NOAA gauge 8594900 Washington DC; no Alexandria gauge in the NOAA water-level list)
 - Hourly record 2015-2026-10, <5% missing. NOS minor-flood level (9.49 ft station datum = 1.506 m MLLW) crossed on 20 distinct events in 2024-2026 (15 in 2024, 5 in 2025, 0 in 2026 so far); NWS minor (9.85 ft) only 8; NOS moderate 1.

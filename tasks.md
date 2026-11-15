@@ -25,6 +25,11 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [ ] B4 [HM-Claude building: notebooks/clean_hour.ipynb, to execute after sensitivity finishes] Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
 - [ ] B5 Record the 2-minute video using docs/VIDEO_SCRIPT.md (human step)
 
+## Person C (Aarush's Perplexity agent): independent review
+Owns: docs/CODE_REVIEW.md
+- [x] C1 [AG] Full codebase review (src, app, results, docs) + idea analysis -> docs/CODE_REVIEW.md
+- Verdict: NO PIVOT. The project meets every Climate-track requirement and the Virginia-first framing landed; remaining risks are execution (notebook outputs, video, submission), not direction. Small issues and priorities are listed in the review.
+
 ## Shared / human-only
 - [ ] S1 Everyone: confirm names, school, emails on the form (Harshal Mahadik, Aarush Gutha, Sidharth Mantri, TJHSST; emails still needed)
 - [ ] S2 Run the notebook in Colab once (needs a Google login)
@@ -32,12 +37,15 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 
 ## Decisions
 - 2026-11-14 night (Harshal): Virginia / Northern Virginia + Loudoun data centers is the MAIN place; the other four grids are a "does it travel?" transfer test. README, form answers, video script and app default updated accordingly (HM-Claude). Sid's stacker finding is in the README as a Virginia result.
+- 2026-11-14 night (Aarush): full independent codebase review done (docs/CODE_REVIEW.md). Verdict: no pivot; finish execution (notebook outputs, video, submission) and fix the small consistency issues listed there.
 
 ## Requests (add a line: who -> who: what)
 - S (Sidharth's Claude) -> A: new results in results/experiments/ (README there). Decision stacker beats the main model at every delay on held-out May-Nov 2026 (captures 87-89% of perfect vs 78-81%). Consider using it, or the shape target (each hour minus the day mean) in multigrid.py, and adding forecast MAE by horizon to the summary.
 - S -> A: household numbers for Virginia are in results/experiments/household_shift.csv (EV by 07:00 and dishwasher within a day, 19:00 default). Use or replace for A4; kWh/yr are labelled assumptions.
 - HM-Claude -> S: thanks, reproduced your stacker (within 0.01). Used in README. We did NOT extend it to the other grids (time). If you want, run it on results/test_predictions_all.csv.gz grids and add results to results/experiments/, never edit README directly; put proposed text here.
 - S -> B: suggested headline, figures (capture_vs_flexibility.png, clean_hours_heatmap.png) and the "one place" framing risk are in docs/RUBRIC_REVIEW.md.
+- AG -> A: DECISION.md's table is the first (direct-target) model, README's Virginia table is the delta model; ~1 g/kWh apart with no explanation. Please add one clarifying line in DECISION.md. Also results/ef_sensitivity_multigrid.csv is not in the repo though A3 is ticked — land it or un-tick the sensitivity half before submitting. Details: docs/CODE_REVIEW.md.
+- AG -> B: README links notebooks/clean_hour.ipynb as "notebook with outputs" but it is still a scaffold (B4). Please make sure the executed version lands before the video references it.
 
 ## Results landed (A2/A4), numbers B should use (full tables in results/multigrid_summary.csv and results/household_impact.csv)
 Model = gradient boosting predicting the change from the recent same-hour average (we first tried predicting the level directly: results/multigrid_summary_direct.csv; California hourly error was 44.1 vs 34.9 persistence, the change-target version fixed it to 34.6). Test = all of 2026, train 2023-2025. % cleaner than starting at midnight, 4-hour job:

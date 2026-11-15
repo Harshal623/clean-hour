@@ -46,8 +46,8 @@ Each is a separate question a judge can understand; each is cheap and honest. Pi
 - [x] E5b [A, MERGED: PESGM paper full text and Radovanovic abstract read; Chen 2025 abstract only; full citations + URLs in docs/experiments/related-work.md, README, CREDITS]
 
 ### Phase 2: merge window (Sun noon to 6 PM) [A merges]
-- [ ] 2.1 Merge branches in order of verdict value: E1, E4, E5, E3, E2, E6, E7, E8 (skip any failing the gate).
-- [ ] 2.2 After each merge A updates README Results/Related-work with ONLY numbers copied from the merged results csv, runs scripts/check.py, pushes.
+- [x] 2.1 [A, done Sun 3:45 PM: E1-E7, E10, E5b merged; E8/E9 not code] Merge branches in order of verdict value: E1, E4, E5, E3, E2, E6, E7, E8 (skip any failing the gate).
+- [x] 2.2 [A, done] After each merge A updates README Results/Related-work with ONLY numbers copied from the merged results csv, runs scripts/check.py, pushes.
 - [ ] 2.3 S adds app wording for any adopted feature; C re-reviews the final README against the rubric (docs/CODE_REVIEW.md checklist).
 
 ### Phase 3: freeze and submit

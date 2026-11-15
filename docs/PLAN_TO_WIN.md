@@ -1,3 +1,3 @@
 # PLAN_TO_WIN
 
-Placeholder created by the Freebuff agent to test write access; replaced in the same commit as the plan text where possible.
+Placeholder replaced by the real plan in the pull request description and the chat. See docs/PLAN_TO_WIN.md on the branch.

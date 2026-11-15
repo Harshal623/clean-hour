@@ -15,7 +15,7 @@ Code Link
 https://github.com/Harshal623/clean-hour
 
 Write-up Link
-[https://github.com/Harshal623/clean-hour/blob/main/README.md](https://github.com/Harshal623/clean-hour/blob/main/submission/WRITEUP.md (one page, Veritas template; full detail in README.md))
+https://github.com/Harshal623/clean-hour/blob/main/submission/WRITEUP.md (one page, Veritas template; full detail in README.md)
 
 Demo Video Link
 <paste YouTube unlisted or Drive link after recording; script in docs/VIDEO_SCRIPT.md>

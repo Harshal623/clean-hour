@@ -1,78 +1,173 @@
-"""Gradio demo: pick a 2026 test day and how long the job may slip -> cleanest 4h window.
-Everything shown is from the held-out 2026 test set (the model never saw these days).
-Run from the repo root:  python app/app.py
+"""Clean-Hour: a simple app that tells you the cleanest time to run a big appliance.
+
+Replays real days from 2026 (the model never saw them). Run from the repo root:
+    python app/app.py
 """
 import os
 
 import gradio as gr
-import matplotlib
 import numpy as np
 import pandas as pd
 
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-
 HERE = os.path.dirname(os.path.abspath(__file__))
-DF = pd.read_csv(os.path.join(HERE, "..", "results", "test_predictions.csv.gz"), parse_dates=["day"])
-DAYS = sorted(DF.day.dt.strftime("%Y-%m-%d").unique())
-JOB = 4
+RES = os.path.join(HERE, "..", "results")
+DF = pd.read_csv(os.path.join(RES, "test_predictions_all.csv.gz"), parse_dates=["day"])
+SUM = pd.read_csv(os.path.join(RES, "multigrid_summary.csv"))
+
+REGIONS = {
+    "California, USA": "ciso", "Texas, USA": "erco", "Virginia / Mid-Atlantic, USA": "pjm",
+    "Germany": "de", "Great Britain": "gb",
+}
+APPLIANCES = {  # label: (hours it runs, kWh per run)
+    "Charge my electric car": (4, 10.0),
+    "Run the dishwasher": (2, 1.2),
+    "Do laundry (wash + dry)": (3, 3.0),
+    "Heat water (boiler / heat pump)": (3, 3.0),
+}
+WAIT = {"Just tonight (up to 12 hours)": 12, "Until tomorrow (24 hours)": 24, "I'm flexible: up to 3 days": 72}
+_common = set.intersection(*[set(DF[DF.grid == g].day) for g in REGIONS.values()])
+DAYS = sorted(_common)
+DAY_LABELS = [d.strftime("%a %d %b %Y") for d in DAYS]
 
 
-def costs(profile):
-    return np.convolve(profile, np.ones(JOB) / JOB, mode="valid")
+def clock(h):
+    h = int(h) % 24
+    return f"{(h % 12) or 12} {'AM' if h < 12 else 'PM'}"
 
 
-def run(day, slip, min_saving):
-    g = DF[DF.day == pd.Timestamp(day)].sort_values("j")
-    slip = int(slip)
-    y, p, c, pe = g.y.values, g.pred.values, g.clim.values, g.persist.values
-    cp, cy = costs(p)[:slip + 1], costs(y)
-    cc, cpe = costs(c)[:slip + 1], costs(pe)[:slip + 1]
-    st = int(cp.argmin())
-    pred_saving = cp[0] - cp[st]
-    unsure = pred_saving < min_saving
-    start = 0 if unsure else st
+def when(j, release):
+    d = release + pd.Timedelta(hours=int(j))
+    return f"{d.strftime('%A')} at {clock(d.hour)}"
+
+
+def colour(v, lo, hi):
+    t = 0 if hi <= lo else min(max((v - lo) / (hi - lo), 0), 1)
+    r, g = int(60 + 190 * t), int(190 - 110 * t)  # green -> red
+    return f"rgb({r},{g},80)"
+
+
+def bar_html(prof, lo, hi, start, L, nshow):
+    rows = []
+    n_days = int(np.ceil(nshow / 24))
+    for d in range(n_days):
+        cells = []
+        for h in range(24):
+            j = d * 24 + h
+            if j >= len(prof) or j >= nshow:
+                cells.append("<div style='flex:1;height:22px'></div>")
+                continue
+            chosen = start <= j < start + L
+            border = "3px solid #111" if chosen else "1px solid white"
+            cells.append(f"<div title='{clock(h)}: {prof[j]:.0f} g CO2 per kWh' style='flex:1;height:22px;"
+                         f"background:{colour(prof[j], lo, hi)};border:{border};box-sizing:border-box'></div>")
+        rows.append(f"<div style='margin:3px 0'><div style='font-size:12px;color:#555'>Day {d + 1}</div>"
+                    f"<div style='display:flex'>{''.join(cells)}</div></div>")
+    scale = ("<div style='display:flex;justify-content:space-between;font-size:12px;color:#555;margin-top:2px'>"
+             "<span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>11 PM</span></div>")
+    legend = ("<div style='font-size:13px;margin-top:8px'><span style='color:#2a9d4a'>■</span> cleaner power &nbsp;"
+              "<span style='color:#d9534f'>■</span> dirtier power &nbsp; <b>Black outline</b> = the time we suggest</div>")
+    return "".join(rows) + scale + legend
+
+
+def advise(region, appliance, wait, day_label):
+    g = REGIONS[region]
+    L, kwh = APPLIANCES[appliance]
+    slip = WAIT[wait]
+    day = DAYS[DAY_LABELS.index(day_label)]
+    d = DF[(DF.grid == g) & (DF.day == day)].sort_values("j")
+    y, p = d.y.values, d.pred.values
+    nshow = slip + L
+
+    def win(a):  # mean intensity of every L-hour window
+        return np.convolve(a, np.ones(L) / L, mode="valid")
+
+    cp, cy = win(p)[:slip + 1], win(y)
+    start = int(cp.argmin())
+    now_pred, now_act = cp[0], cy[0]
+    gain_pred = 100 * (now_pred - cp[start]) / now_pred
     best = int(cy[:slip + 1].argmin())
-    now = cy[0]
-    fig, ax = plt.subplots(figsize=(9, 3.6))
-    sh = min(len(g), 80)
-    ax.plot(g.j[:sh], y[:sh], color="#222", lw=1.6, label="actual")
-    ax.plot(g.j[:sh], p[:sh], color="#1f6f5c", lw=1.6, label="model forecast")
-    ax.plot(g.j[:sh], c[:sh], color="#d9822b", ls=":", label="climatology")
-    ax.axvspan(start, start + JOB, color="#1f6f5c", alpha=.2, label="chosen window")
-    ax.axvspan(best, best + JOB, color="#222", alpha=.1, label="best possible")
-    ax.set_xlabel("hours after local midnight of the job's release day")
-    ax.set_ylabel("gCO2/kWh (PJM average)")
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(frameon=False, fontsize=8, ncol=3)
-    fig.tight_layout()
-    rule = ("UNSURE: forecast saves < %.0f g/kWh, so RUN NOW (hour 0)." % min_saving) if unsure else \
-        "Start the job %d h after midnight (%02d:00 local)." % (st, st % 24)
-    txt = (f"{rule}\n\nActual intensity of the 4h window (gCO2/kWh):\n"
-           f"  run now:            {now:6.1f}\n"
-           f"  our choice:         {cy[start]:6.1f}  (saves {100*(now-cy[start])/now:.1f}% vs run now)\n"
-           f"  persistence rule:   {cy[int(cpe.argmin())]:6.1f}\n"
-           f"  climatology rule:   {cy[int(cc.argmin())]:6.1f}\n"
-           f"  perfect foresight:  {cy[best]:6.1f}\n\n"
-           f"Model predicted a saving of {pred_saving:.1f} g/kWh; actual saving {now-cy[st]:.1f}.\n"
-           "Signal = PJM-wide AVERAGE emissions, not Loudoun-specific, not marginal.")
-    return fig, txt
+    gain_act = 100 * (now_act - cy[start]) / now_act
+    gain_best = 100 * (now_act - cy[best]) / now_act
+    grams = (now_act - cy[start]) * kwh
+    release = pd.Timestamp(day)
+    if gain_pred < 3:
+        head = "No clear winner: start whenever suits you"
+        sub = "The forecast sees almost no difference between hours in this window."
+        start = 0
+    else:
+        end = start + L
+        head = f"Start {when(start, release)}"
+        sub = (f"It will run until about {when(end, release).split(' at ')[1]}. "
+               f"We expect that to be about <b>{gain_pred:.0f}% cleaner</b> than starting at midnight.")
+    lo, hi = np.percentile(p[:nshow], 5), np.percentile(p[:nshow], 95)
+    card = (f"<div style='padding:18px;border-radius:12px;background:#eaf6ee;border:1px solid #bfe3c9'>"
+            f"<div style='font-size:28px;font-weight:700;color:#14532d'>{head}</div>"
+            f"<div style='font-size:16px;margin-top:6px'>{sub}</div></div>")
+    forecast = (f"<h4 style='margin:16px 0 4px'>The forecast for the next {int(np.ceil(nshow / 24))} day(s)</h4>"
+                + bar_html(p, lo, hi, start, L, nshow))
+    looked_back = (f"<h4 style='margin:16px 0 4px'>What actually happened that day</h4>"
+                   f"<div style='font-size:15px'>Following the advice cut the CO2 of this run by "
+                   f"<b>{gain_act:.0f}%</b> compared with starting at midnight (the best possible choice, "
+                   f"with perfect hindsight, was {gain_best:.0f}%). "
+                   f"For a {kwh:g} kWh job that is about <b>{grams:,.0f} grams of CO2</b> avoided.</div>"
+                   + bar_html(y, lo, hi, start, L, nshow))
+    return card + forecast, looked_back
 
 
-with gr.Blocks(title="Loudoun carbon-aware scheduler") as demo:
-    gr.Markdown("# When should a Loudoun data center run its flexible 4-hour job?\n"
-                "Decision made at 18:00 the evening before. Test days from 2026 only (never used in training).")
-    with gr.Row():
-        day = gr.Dropdown(DAYS, value=DAYS[40], label="Job release day (local midnight)")
-        slip = gr.Radio([0, 12, 24, 48, 72], value=24, label="How long may the job be delayed (hours)?")
-        ms = gr.Slider(0, 20, value=3, step=1, label="'Unsure' threshold: run now if predicted saving is below (g/kWh)")
-    btn = gr.Button("Recommend a start time", variant="primary")
-    plot, out = gr.Plot(), gr.Textbox(lines=11, label="Result")
-    btn.click(run, [day, slip, ms], [plot, out])
-    demo.load(run, [day, slip, ms], [plot, out])
-    gr.Markdown("Honest note: at 12-24 h of slack the model is statistically tied with the simple 'repeat yesterday' rule; "
-                "it clearly beats hour-of-week averages, and beats persistence at 48-72 h. "
-                "The 'unsure' threshold gave no measurable gain on 2026 test data.")
+def scorecard(region, wait):
+    g = REGIONS[region]
+    slip = WAIT[wait]
+    r = SUM[(SUM.grid == g) & (SUM.slip_h == slip)].iloc[0]
+    return (f"**How good is this in {region}?** We tested on every day of 2026 (days the model never saw), "
+            f"for a 4-hour job that can wait {slip} hours.\n\n"
+            f"- Starting at midnight: **{r.immediate:.0f}** g CO2 per kWh\n"
+            f"- Our advice: **{r.model:.0f}** g (about **{r.model_pct_saved:.0f}% cleaner**)\n"
+            f"- A simple rule (\"run at the cleanest hour of an average week\"): {r.climatology:.0f} g "
+            f"({r.climatology_pct_saved:.0f}% cleaner)\n"
+            f"- Perfect hindsight: {r.oracle:.0f} g ({r.oracle_pct_saved:.0f}% cleaner)\n\n"
+            + ("*In this region, the simple rule is almost as good for same-day shifting. "
+               "Forecasting matters more the longer you can wait.*" if abs(r.model_minus_climatology) < 5
+               else "*Here the forecast clearly beats the simple rule.*"))
+
+
+with gr.Blocks(title="Clean-Hour") as demo:
+    gr.Markdown("# 🌍 Clean-Hour\n### When is electricity cleanest? Run big appliances then.\n"
+                "Power plants burn more coal and gas at some hours than others. Pick your region and "
+                "appliance and we'll tell you the cleanest time to start it. "
+                "(Demo: replays real days from 2026.)")
+    with gr.Column(scale=1):
+        region = gr.Dropdown(list(REGIONS), value="California, USA", label="1. Where do you live?")
+        appliance = gr.Dropdown(list(APPLIANCES), value="Charge my electric car", label="2. What do you want to run?")
+        wait = gr.Radio(list(WAIT), value="Until tomorrow (24 hours)", label="3. How long can it wait?")
+        with gr.Row():
+            day = gr.Dropdown(DAY_LABELS, value=DAY_LABELS[120], label="4. Pick a day to try (real days from 2026)")
+            surprise = gr.Button("🎲 Surprise me", scale=0)
+    go = gr.Button("Find the cleanest time", variant="primary", size="lg")
+    answer = gr.HTML()
+    with gr.Accordion("What actually happened that day? (hindsight check)", open=False):
+        hindsight = gr.HTML()
+    with gr.Accordion("How accurate is this? (honest numbers)", open=False):
+        score = gr.Markdown()
+    with gr.Accordion("What this does NOT tell you", open=False):
+        gr.Markdown("- We use the **average** carbon intensity of your region's whole power grid, "
+                    "not your own electricity company and not the effect of one extra appliance (marginal emissions).\n"
+                    "- Past-day replay only. A live version needs live grid data.\n"
+                    "- Savings are measured against starting at midnight; if you normally run things at midday "
+                    "in a sunny region, you already win.\n"
+                    "- Prototype for education, not an energy-bill or environmental guarantee.")
+
+    def update(region, appliance, wait, day_idx):
+        a, h = advise(region, appliance, wait, day_idx)
+        return a, h, scorecard(region, wait)
+
+    ins = [region, appliance, wait, day]
+    outs = [answer, hindsight, score]
+    go.click(update, ins, outs)
+    for c in (region, appliance, wait):
+        c.change(update, ins, outs)
+    day.change(update, ins, outs)
+    surprise.click(lambda: DAY_LABELS[int(np.random.randint(0, len(DAY_LABELS)))], None, day)
+    demo.load(update, ins, outs)
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(theme=gr.themes.Soft(primary_hue="green"))

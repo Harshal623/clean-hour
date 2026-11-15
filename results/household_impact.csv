@@ -1,0 +1,61 @@
+grid,name,delay_h,strategy,load,g_per_kwh_saved,kg_per_year,kg_per_year_lo,kg_per_year_hi
+pjm,Virginia / Mid-Atlantic (USA),24,model,"EV charging (3,000 kWh/yr)",24.27,72.81,64.48,82.33
+pjm,Virginia / Mid-Atlantic (USA),24,model,Laundry + dishwasher (400 kWh/yr),24.27,9.71,8.6,10.98
+pjm,Virginia / Mid-Atlantic (USA),24,climatology,"EV charging (3,000 kWh/yr)",10.76,32.27,26.8,38.05
+pjm,Virginia / Mid-Atlantic (USA),24,climatology,Laundry + dishwasher (400 kWh/yr),10.76,4.3,3.57,5.07
+pjm,Virginia / Mid-Atlantic (USA),24,oracle,"EV charging (3,000 kWh/yr)",28.69,86.08,78.85,94.87
+pjm,Virginia / Mid-Atlantic (USA),24,oracle,Laundry + dishwasher (400 kWh/yr),28.69,11.48,10.51,12.65
+pjm,Virginia / Mid-Atlantic (USA),72,model,"EV charging (3,000 kWh/yr)",35.26,105.77,93.67,118.8
+pjm,Virginia / Mid-Atlantic (USA),72,model,Laundry + dishwasher (400 kWh/yr),35.26,14.1,12.49,15.84
+pjm,Virginia / Mid-Atlantic (USA),72,climatology,"EV charging (3,000 kWh/yr)",22.36,67.09,54.3,79.58
+pjm,Virginia / Mid-Atlantic (USA),72,climatology,Laundry + dishwasher (400 kWh/yr),22.36,8.95,7.24,10.61
+pjm,Virginia / Mid-Atlantic (USA),72,oracle,"EV charging (3,000 kWh/yr)",43.65,130.96,120.41,142.89
+pjm,Virginia / Mid-Atlantic (USA),72,oracle,Laundry + dishwasher (400 kWh/yr),43.65,17.46,16.05,19.05
+ciso,California (USA),24,model,"EV charging (3,000 kWh/yr)",120.31,360.94,321.9,395.93
+ciso,California (USA),24,model,Laundry + dishwasher (400 kWh/yr),120.31,48.13,42.92,52.79
+ciso,California (USA),24,climatology,"EV charging (3,000 kWh/yr)",113.75,341.25,306.52,374.46
+ciso,California (USA),24,climatology,Laundry + dishwasher (400 kWh/yr),113.75,45.5,40.87,49.93
+ciso,California (USA),24,oracle,"EV charging (3,000 kWh/yr)",122.34,367.01,328.75,402.0
+ciso,California (USA),24,oracle,Laundry + dishwasher (400 kWh/yr),122.34,48.93,43.83,53.6
+ciso,California (USA),72,model,"EV charging (3,000 kWh/yr)",129.88,389.64,344.68,431.1
+ciso,California (USA),72,model,Laundry + dishwasher (400 kWh/yr),129.88,51.95,45.96,57.48
+ciso,California (USA),72,climatology,"EV charging (3,000 kWh/yr)",116.24,348.72,312.59,384.3
+ciso,California (USA),72,climatology,Laundry + dishwasher (400 kWh/yr),116.24,46.5,41.68,51.24
+ciso,California (USA),72,oracle,"EV charging (3,000 kWh/yr)",139.56,418.68,373.83,460.59
+ciso,California (USA),72,oracle,Laundry + dishwasher (400 kWh/yr),139.56,55.82,49.84,61.41
+erco,Texas (USA),24,model,"EV charging (3,000 kWh/yr)",100.42,301.25,282.34,322.34
+erco,Texas (USA),24,model,Laundry + dishwasher (400 kWh/yr),100.42,40.17,37.64,42.98
+erco,Texas (USA),24,climatology,"EV charging (3,000 kWh/yr)",99.07,297.21,278.42,316.9
+erco,Texas (USA),24,climatology,Laundry + dishwasher (400 kWh/yr),99.07,39.63,37.12,42.25
+erco,Texas (USA),24,oracle,"EV charging (3,000 kWh/yr)",108.37,325.11,307.86,344.2
+erco,Texas (USA),24,oracle,Laundry + dishwasher (400 kWh/yr),108.37,43.35,41.05,45.89
+erco,Texas (USA),72,model,"EV charging (3,000 kWh/yr)",117.62,352.87,332.5,375.12
+erco,Texas (USA),72,model,Laundry + dishwasher (400 kWh/yr),117.62,47.05,44.33,50.02
+erco,Texas (USA),72,climatology,"EV charging (3,000 kWh/yr)",103.18,309.53,283.51,337.5
+erco,Texas (USA),72,climatology,Laundry + dishwasher (400 kWh/yr),103.18,41.27,37.8,45.0
+erco,Texas (USA),72,oracle,"EV charging (3,000 kWh/yr)",135.69,407.07,386.07,428.72
+erco,Texas (USA),72,oracle,Laundry + dishwasher (400 kWh/yr),135.69,54.28,51.48,57.16
+de,Germany,24,model,"EV charging (3,000 kWh/yr)",169.47,508.42,438.23,594.74
+de,Germany,24,model,Laundry + dishwasher (400 kWh/yr),169.47,67.79,58.43,79.3
+de,Germany,24,climatology,"EV charging (3,000 kWh/yr)",168.95,506.85,432.69,595.65
+de,Germany,24,climatology,Laundry + dishwasher (400 kWh/yr),168.95,67.58,57.69,79.42
+de,Germany,24,oracle,"EV charging (3,000 kWh/yr)",177.86,533.57,469.15,612.03
+de,Germany,24,oracle,Laundry + dishwasher (400 kWh/yr),177.86,71.14,62.55,81.6
+de,Germany,72,model,"EV charging (3,000 kWh/yr)",189.72,569.16,498.22,655.12
+de,Germany,72,model,Laundry + dishwasher (400 kWh/yr),189.72,75.89,66.43,87.35
+de,Germany,72,climatology,"EV charging (3,000 kWh/yr)",176.31,528.92,455.73,622.71
+de,Germany,72,climatology,Laundry + dishwasher (400 kWh/yr),176.31,70.52,60.76,83.03
+de,Germany,72,oracle,"EV charging (3,000 kWh/yr)",207.97,623.9,561.38,699.46
+de,Germany,72,oracle,Laundry + dishwasher (400 kWh/yr),207.97,83.19,74.85,93.26
+gb,Great Britain,24,model,"EV charging (3,000 kWh/yr)",34.52,103.57,83.22,126.84
+gb,Great Britain,24,model,Laundry + dishwasher (400 kWh/yr),34.52,13.81,11.1,16.91
+gb,Great Britain,24,climatology,"EV charging (3,000 kWh/yr)",4.61,13.82,3.77,24.98
+gb,Great Britain,24,climatology,Laundry + dishwasher (400 kWh/yr),4.61,1.84,0.5,3.33
+gb,Great Britain,24,oracle,"EV charging (3,000 kWh/yr)",42.09,126.28,109.13,147.07
+gb,Great Britain,24,oracle,Laundry + dishwasher (400 kWh/yr),42.09,16.84,14.55,19.61
+gb,Great Britain,72,model,"EV charging (3,000 kWh/yr)",49.51,148.53,126.26,175.06
+gb,Great Britain,72,model,Laundry + dishwasher (400 kWh/yr),49.51,19.8,16.84,23.34
+gb,Great Britain,72,climatology,"EV charging (3,000 kWh/yr)",14.41,43.23,16.82,68.55
+gb,Great Britain,72,climatology,Laundry + dishwasher (400 kWh/yr),14.41,5.76,2.24,9.14
+gb,Great Britain,72,oracle,"EV charging (3,000 kWh/yr)",60.33,180.99,159.44,203.21
+gb,Great Britain,72,oracle,Laundry + dishwasher (400 kWh/yr),60.33,24.13,21.26,27.09

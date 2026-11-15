@@ -1,0 +1,228 @@
+{
+ "verdict": "TIE",
+ "wins": [
+  "pjm"
+ ],
+ "significantly_worse_24h": [],
+ "device": "cuda",
+ "torch": "2.14.1+cu130",
+ "lambda": 1.0,
+ "tau": 0.1,
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "grids": [
+  {
+   "grid": "pjm",
+   "y_max_abs_diff_vs_saved": 0.04999077223232007,
+   "worst_days_24h": [
+    "2026-09-27 (40 g/kWh above the best window)",
+    "2026-02-18 (39 g/kWh above the best window)",
+    "2026-01-09 (39 g/kWh above the best window)"
+   ],
+   "pct_days_worse_than_midnight_24h": 8.360128617363344,
+   "variants": [
+    {
+     "variant": "transformer_mse",
+     "epochs_per_seed": [
+      35,
+      27,
+      21
+     ],
+     "epochs_used": 27,
+     "val_regret_24h_g_per_kwh": [
+      3.83,
+      3.66,
+      3.71
+     ],
+     "seconds": 40.2
+    },
+    {
+     "variant": "transformer_decision",
+     "epochs_per_seed": [
+      18,
+      9,
+      15
+     ],
+     "epochs_used": 15,
+     "val_regret_24h_g_per_kwh": [
+      3.81,
+      3.29,
+      3.13
+     ],
+     "seconds": 22.2
+    }
+   ]
+  },
+  {
+   "grid": "ciso",
+   "y_max_abs_diff_vs_saved": 0.049991729613495295,
+   "worst_days_24h": [
+    "2026-10-11 (21 g/kWh above the best window)",
+    "2026-04-26 (19 g/kWh above the best window)",
+    "2026-08-31 (14 g/kWh above the best window)"
+   ],
+   "pct_days_worse_than_midnight_24h": 0.0,
+   "variants": [
+    {
+     "variant": "transformer_mse",
+     "epochs_per_seed": [
+      10,
+      11,
+      22
+     ],
+     "epochs_used": 11,
+     "val_regret_24h_g_per_kwh": [
+      2.71,
+      2.36,
+      2.4
+     ],
+     "seconds": 16.5
+    },
+    {
+     "variant": "transformer_decision",
+     "epochs_per_seed": [
+      3,
+      10,
+      5
+     ],
+     "epochs_used": 5,
+     "val_regret_24h_g_per_kwh": [
+      2.15,
+      2.19,
+      2.11
+     ],
+     "seconds": 12.5
+    }
+   ]
+  },
+  {
+   "grid": "erco",
+   "y_max_abs_diff_vs_saved": 0.049989991325844585,
+   "worst_days_24h": [
+    "2026-01-23 (122 g/kWh above the best window)",
+    "2026-01-06 (120 g/kWh above the best window)",
+    "2026-02-14 (111 g/kWh above the best window)"
+   ],
+   "pct_days_worse_than_midnight_24h": 2.229299363057325,
+   "variants": [
+    {
+     "variant": "transformer_mse",
+     "epochs_per_seed": [
+      17,
+      12,
+      19
+     ],
+     "epochs_used": 17,
+     "val_regret_24h_g_per_kwh": [
+      5.52,
+      6.14,
+      5.48
+     ],
+     "seconds": 19.5
+    },
+    {
+     "variant": "transformer_decision",
+     "epochs_per_seed": [
+      11,
+      7,
+      24
+     ],
+     "epochs_used": 11,
+     "val_regret_24h_g_per_kwh": [
+      6.62,
+      6.23,
+      5.39
+     ],
+     "seconds": 20.3
+    }
+   ]
+  },
+  {
+   "grid": "de",
+   "y_max_abs_diff_vs_saved": 0.04999913769319164,
+   "worst_days_24h": [
+    "2026-01-08 (144 g/kWh above the best window)",
+    "2026-02-13 (140 g/kWh above the best window)",
+    "2026-01-27 (124 g/kWh above the best window)"
+   ],
+   "pct_days_worse_than_midnight_24h": 3.5031847133757963,
+   "variants": [
+    {
+     "variant": "transformer_mse",
+     "epochs_per_seed": [
+      5,
+      5,
+      65
+     ],
+     "epochs_used": 5,
+     "val_regret_24h_g_per_kwh": [
+      12.41,
+      12.01,
+      9.33
+     ],
+     "seconds": 18.2
+    },
+    {
+     "variant": "transformer_decision",
+     "epochs_per_seed": [
+      9,
+      12,
+      19
+     ],
+     "epochs_used": 12,
+     "val_regret_24h_g_per_kwh": [
+      8.88,
+      7.61,
+      7.75
+     ],
+     "seconds": 19.6
+    }
+   ]
+  },
+  {
+   "grid": "gb",
+   "y_max_abs_diff_vs_saved": 0.0,
+   "worst_days_24h": [
+    "2026-10-16 (91 g/kWh above the best window)",
+    "2026-02-28 (87 g/kWh above the best window)",
+    "2026-03-05 (85 g/kWh above the best window)"
+   ],
+   "pct_days_worse_than_midnight_24h": 8.598726114649681,
+   "variants": [
+    {
+     "variant": "transformer_mse",
+     "epochs_per_seed": [
+      28,
+      20,
+      25
+     ],
+     "epochs_used": 25,
+     "val_regret_24h_g_per_kwh": [
+      7.67,
+      8.26,
+      7.09
+     ],
+     "seconds": 27.2
+    },
+    {
+     "variant": "transformer_decision",
+     "epochs_per_seed": [
+      9,
+      3,
+      6
+     ],
+     "epochs_used": 6,
+     "val_regret_24h_g_per_kwh": [
+      7.15,
+      7.52,
+      6.28
+     ],
+     "seconds": 12.3
+    }
+   ]
+  }
+ ]
+}

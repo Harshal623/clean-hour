@@ -73,9 +73,12 @@ def predict_delta(m, te, feats):
 MODE = "delta"  # "direct" = predict the level itself (first version)
 
 
-def run_grid(key):
+def run_grid(key, ci_override=None):
     name, tz, _ = GRIDS[key]
     g, w = load_grid_data(key)
+    if ci_override is not None:  # used by the emission-factor sensitivity check
+        g = g.copy()
+        g["ci"] = ci_override.reindex(g.index).values
     data = build_rows_g(g, w, tz)
     feats_hist = HIST
     feats_full = HIST + (["dem_fcst"] if data["dem_fcst"].notna().any() else []) + WX

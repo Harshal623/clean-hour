@@ -41,7 +41,7 @@ def _get(url, tries=3):
 
 
 def load_eia_multi(bas=("CISO", "ERCO")):
-    todo = [b for b in bas if not os.path.exists(f"data/grid_{b.lower()}.csv")]
+    todo = [b for b in bas if not os.path.exists(f"data/fuel_{b.lower()}.csv")]
     if not todo:
         return
     frames = {b: [] for b in todo}
@@ -60,6 +60,7 @@ def load_eia_multi(bas=("CISO", "ERCO")):
         g = pd.concat(frames[b]).sort_index()
         g = g[~g.index.duplicated()]
         g = g.loc[:g[list(FUELS)].dropna(how="all").index.max()]  # cut placeholder rows
+        g[list(FUELS)].to_csv(f"data/fuel_{b.lower()}.csv")
         out = pd.DataFrame({"ci": carbon_intensity(g), "demand_fcst": g["demand_fcst"]})
         out.index.name = "utc_end_of_hour"
         out.to_csv(f"data/grid_{b.lower()}.csv")
@@ -68,8 +69,9 @@ def load_eia_multi(bas=("CISO", "ERCO")):
 
 def load_pjm():
     f = "data/grid_pjm.csv"
-    if not os.path.exists(f):
+    if not os.path.exists("data/fuel_pjm.csv"):
         g = load_grid().loc[:"2026-11-14 05:00"]
+        g[list(FUELS)].to_csv("data/fuel_pjm.csv")
         out = pd.DataFrame({"ci": carbon_intensity(g), "demand_fcst": g["demand_fcst"]})
         out.index.name = "utc_end_of_hour"
         out.to_csv(f)
@@ -85,7 +87,7 @@ DE_MAP = {  # Energy-Charts production type -> our fuel
 
 def load_de():
     f = "data/grid_de.csv"
-    if os.path.exists(f):
+    if os.path.exists("data/fuel_de.csv"):
         return
     parts = []
     for y in range(2023, 2027):
@@ -105,6 +107,7 @@ def load_de():
     for k in FUELS:
         if k not in g:
             g[k] = 0.0
+    g[list(FUELS)].to_csv("data/fuel_de.csv")
     out = pd.DataFrame({"ci": carbon_intensity(g)})
     out.index.name = "utc_end_of_hour"
     out.to_csv(f)

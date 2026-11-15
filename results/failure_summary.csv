@@ -1,0 +1,6 @@
+grid,region,days,median_regret,p90_regret,pct_within_10g_of_best,pct_worse_than_midnight,worst_regret,mean_fcst_err_on_worst3,mean_fcst_err_all
+ciso,California,314,0.8,6.1,96.8,0.0,21.0,32.6,33.9
+de,Germany,314,1.1,23.7,80.9,5.7,117.2,72.9,58.4
+erco,Texas,314,2.5,19.4,78.3,3.2,133.7,54.9,40.0
+gb,Great Britain,314,1.7,26.0,79.3,15.3,87.0,40.7,28.3
+pjm,Virginia,311,2.1,12.8,87.5,8.7,43.1,20.2,13.3

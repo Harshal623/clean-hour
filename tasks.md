@@ -66,7 +66,7 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [x] B2 [done by HM-Claude, B please review wording and fix anything wrong] Rewrite README.md in the Veritas template for the new global/household framing (numbers come from results/multigrid_summary.csv once A2 lands; until then leave TODO markers, never invent numbers)
 - [x] B3 [done by HM-Claude, B please review] Update CREDITS.md (add Energy-Charts, NESO Carbon Intensity API, EIA CISO/ERCOT) and submission/FORM_ANSWERS.md (title, pitch, what we added)
 - [x] B4 [AG, verified: section 4 reads results/ef_sensitivity_multigrid.csv with outputs; committed in 240ff86] Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
-- [ ] B5 Record the 2-minute video using docs/VIDEO_SCRIPT.md (human step)
+- [ ] B5 Record the 2-minute video using docs/VIDEO_SHOT_LIST.md (shots) + docs/VIDEO_SCRIPT.md (words) (human step)
 
 ## Person C (Aarush's Perplexity agent): independent review
 Owns: docs/CODE_REVIEW.md

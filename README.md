@@ -5,6 +5,8 @@
 **Our place:** Northern Virginia on the PJM grid, home of Loudoun County's data-center corridor.
 **Demo:** `python app/app.py` (simple web app; a Replay tab tested on 2026 days and a Live tab for Great Britain using NESO's official forecast). **Notebook with outputs:** `notebooks/clean_hour.ipynb` (Virginia deep dive: `notebooks/virginia_deep_dive.ipynb`).
 
+> A forecast that predicts carbon better is not automatically better at choosing the cleanest hours. In Virginia, training a second stage to rank hours captured 91% of the best possible saving against 85% for the plain model; that gain did not transfer to California, Texas, Germany or Britain, and we report where it holds and where it does not.
+
 ## The problem
 Electricity is not equally clean all day. The power plants that run at 7 PM are different from the ones that run at 2 AM, so the same appliance can cause very different CO2 depending on when it starts. Our home region, Northern Virginia, hosts one of the world's biggest concentrations of data centers, which run flexible batch jobs (AI training chunks, backups, video processing) that could start at almost any hour. Families have the same choice with an electric car, a dishwasher or laundry. Nobody tells them when the grid is cleanest. We built a forecast and a simple tool for that choice in our own region, then tested whether the same method works on four other grids.
 

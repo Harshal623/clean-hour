@@ -3,19 +3,19 @@
 Form: https://airtable.com/appypCyHN77hElIcS/shrXA5VBFdugmoXl6   Deadline: Sun Nov 15, 11:59 PM ET (submit a first version 2+ hours earlier; resubmit freely).
 
 Project Title
-Clean-Hour: A Carbon-Aware Scheduler for Loudoun Data Centers
+Clean-Hour: When Is Electricity Cleanest?
 
 One-Sentence Pitch
-We forecast the carbon intensity of the grid serving Loudoun's data centers and tell an operator when to run a flexible 4-hour AI job, and we test honestly where the forecast beats simple rules (it clearly does against hour-of-week averages, and only at 2-3 days of slack against "repeat yesterday").
+Clean-Hour tells a household in California, Texas, Virginia, Germany or Great Britain the cleanest time to charge the car or run the dishwasher, and honestly tests where an ML forecast beats a simple "run at midday" rule (mostly when you can wait 2-3 days, and in wind-driven Britain).
 
 Track
 Climate
 
 Code Link
-https://github.com/Harshal623/loudoun-carbon-scheduler
+https://github.com/Harshal623/clean-hour
 
 Write-up Link
-https://github.com/Harshal623/loudoun-carbon-scheduler/blob/main/README.md
+https://github.com/Harshal623/clean-hour/blob/main/README.md
 
 Demo Video Link
 <paste YouTube unlisted or Drive link after recording; script in docs/VIDEO_SCRIPT.md>
@@ -33,10 +33,12 @@ New to AI?
 <answer truthfully>
 
 What we added beyond the suggested projects (paste in "Anything Else" or write-up field)
-Our own idea, not a suggested project. Own user: a Loudoun data-center operations lead. Own data: Dominion-zone demand and a forecast-weather archive for Ashburn on top of EIA-930 PJM fuel mix. Own question: how much scheduling slack (12 to 72 hours) does a forecast need before it beats simple rules? We report baselines (run now, persistence, hour-of-week climatology, perfect foresight), 95% block-bootstrap intervals, season and weekday breakdowns, emission-factor sensitivity, a history-only ablation, and a data-integrity and leakage audit. Weak results are reported: the model is statistically tied with persistence at 12-24 h, the "unsure" rule gave no gain, and the signal is PJM-wide average emissions rather than Loudoun-specific or marginal.
+Our own idea, not a suggested project. Own user: ordinary households (EV, dishwasher, laundry), with a plain-English app. Own data: five grids on three continents (EIA-930 for Virginia, California and Texas; Energy-Charts for Germany; NESO for Great Britain) plus an hourly weather-forecast archive for each. Own question: where does an ML forecast beat simple rules, and how long must a household be able to wait before it matters? We report four baselines (start at midnight, persistence, hour-of-week average, perfect hindsight), 95% block-bootstrap intervals, household CO2 impact, failure days per grid, a model fix we found by testing (first version was worse than persistence in California), and a leakage audit. Weak results are reported: in Texas and Germany the model ties the simple rule for same-day shifting, Britain's official NESO forecast beats ours, and the signal is the regional average, not marginal emissions.
 
 Credits
-- EIA Hourly Electric Grid Monitor (EIA-930), PJM fuel mix and Dominion zone demand: https://www.eia.gov/electricity/gridmonitor/
+- EIA Hourly Electric Grid Monitor (EIA-930), PJM, CISO and ERCOT fuel mix and demand: https://www.eia.gov/electricity/gridmonitor/
+- Energy-Charts (Fraunhofer ISE) public power API, Germany: https://api.energy-charts.info/
+- NESO Carbon Intensity API, Great Britain: https://carbonintensity.org.uk/
 - Open-Meteo Historical Forecast API (CC BY 4.0): https://open-meteo.com/en/docs/historical-forecast-api
 - IPCC AR5 WG3 Annex III lifecycle emission factors: https://www.ipcc.ch/report/ar5/wg3/ (oil 650 and other 230 gCO2e/kWh are our own assumptions)
 - NOAA CO-OPS station 8594900 (feasibility check of a backup idea only): https://tidesandcurrents.noaa.gov/
@@ -47,7 +49,7 @@ Credits
 ## Checklist before hitting Submit
 - [ ] Open the repo, README and video links in a private/incognito window; confirm they load without signing in.
 - [ ] README "Team:" line filled in; every teammate's full name, school and email spelled exactly as for certificates.
-- [ ] Notebook shows outputs on GitHub (it does; re-run `notebooks/loudoun_carbon_scheduler.ipynb` in Colab once to confirm it runs top to bottom).
+- [ ] Notebook shows outputs on GitHub and runs in Colab (it still covers the Virginia deep dive; multi-grid results come from `python src/multigrid.py`).
 - [ ] Rules checkboxes, check each only if TRUE:
   - [ ] All work done between 12:00 AM ET Nov 14 and 11:59 PM ET Nov 15 and does not extend an earlier project (the repo history starts Nov 14; the archived solar practice project is not part of this submission).
   - [ ] AI/ML does the main job (gradient boosting forecast drives the decision).

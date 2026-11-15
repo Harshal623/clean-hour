@@ -20,8 +20,8 @@ Owns: src/grids.py, src/multigrid.py, src/sweep.py, src/final.py, results/, DECI
 ## Person B (teammate's Claude): product + writing
 Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [x] B1 [done early by HM-Claude, new simple UI is in app/app.py; B may polish wording/design] Rebuild app/app.py as a simple household app: pick your region, pick an appliance (EV 4h, dishwasher 2h, laundry 2h, water heater 3h), pick how long it can wait (tonight / within a day / within 3 days), pick a day. Output a big plain-English answer, a green-to-red hourly colour bar, and "you save about X% / Y g CO2". Reads results/test_predictions_all.csv.gz (columns: grid, day, j, y, pred, clim, persist). No jargon on the main screen; honest note in a collapsed section.
-- [ ] B2 Rewrite README.md in the Veritas template for the new global/household framing (numbers come from results/multigrid_summary.csv once A2 lands; until then leave TODO markers, never invent numbers)
-- [ ] B3 Update CREDITS.md (add Energy-Charts, NESO Carbon Intensity API, EIA CISO/ERCOT) and submission/FORM_ANSWERS.md (title, pitch, what we added)
+- [x] B2 [done by HM-Claude, B please review wording and fix anything wrong] Rewrite README.md in the Veritas template for the new global/household framing (numbers come from results/multigrid_summary.csv once A2 lands; until then leave TODO markers, never invent numbers)
+- [x] B3 [done by HM-Claude, B please review] Update CREDITS.md (add Energy-Charts, NESO Carbon Intensity API, EIA CISO/ERCOT) and submission/FORM_ANSWERS.md (title, pitch, what we added)
 - [ ] B4 Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
 - [ ] B5 Record the 2-minute video using docs/VIDEO_SCRIPT.md (human step)
 

@@ -1,47 +1,57 @@
-# Clean-Hour: when should a Loudoun data center run its flexible AI jobs?
+# Clean-Hour: when is electricity cleanest? A tool for households in five countries
 
 **Track:** Climate
 **Team:** Harshal Mahadik, Aarush Gutha, Sidharth Mantri (TJHSST)
-**Code:** this repo. Notebook with outputs: `notebooks/loudoun_carbon_scheduler.ipynb`. Demo: `python app/app.py`.
-poop
+**Demo:** `python app/app.py` (simple web app). **Notebook with outputs:** `notebooks/loudoun_carbon_scheduler.ipynb` (Virginia deep dive; the multi-grid results come from `src/multigrid.py`).
+
 ## The problem
-Loudoun County, Virginia hosts the densest cluster of data centers in the world, and AI training and batch jobs run 24/7 on the grid that serves them. The grid's carbon intensity (grams of CO2 per kWh) changes hour to hour as gas, coal and nuclear plants ramp. A data-center operations lead who can delay a flexible job by half a day or more can run it in a cleaner window, if they can predict tomorrow's hours. We test whether an ML forecast beats simple rules for that decision.
+Electricity is not equally clean all day. In California the grid is cleanest at midday when solar peaks; in Britain it depends on the wind; in Texas and Germany it swings with sun, wind and gas. A person who charges an electric car, runs the dishwasher or does laundry at midnight often uses much dirtier power than if they waited a few hours, but nobody tells them when. Millions of homes, and businesses with flexible jobs (including Loudoun County's data centers), could shift use for free. We ask: how much CO2 does shifting save in five very different grids, and where does a machine-learning forecast actually beat simple rules like "run at midday"?
 
 ## What we built
-- **Who/when:** an operations lead at 18:00, deciding when tomorrow's 4-hour flexible batch job (for example an AI training chunk) will start.
-- **In:** the last week of grid carbon intensity, PJM's demand forecast, Dominion-zone demand, and Loudoun's weather forecast.
-- **Out:** a forecast of the next days' hourly carbon intensity, the recommended start hour within the allowed delay, the expected saving, or "unsure, run now".
-- **Demo:** `python app/app.py` (Gradio). Pick a 2026 test day and an allowed delay of 0/12/24/48/72 hours.
+- **Who/when:** an ordinary household in the evening, deciding when to start an appliance tomorrow, or within three days.
+- **In:** their region (California, Texas, Virginia/Mid-Atlantic, Germany, Great Britain), the appliance (car 4 h, dishwasher 2 h, laundry 3 h, water heater 3 h), and how long it can wait (12 h, 24 h, 3 days).
+- **Out:** one plain-English answer ("Start Friday at 2 PM, about 44% cleaner than starting at midnight"), a green-to-red colour strip of the coming hours, and a hindsight check of what really happened that day.
+- **Under the hood:** a gradient-boosting forecast of the grid's hourly carbon intensity (grams of CO2 per kWh), made at 18:00 the evening before from the last week of data, demand forecasts (where public) and local weather forecasts.
 
 ## What we added
-Our own idea (not one of the three suggested projects). Own user: a Loudoun data-center operator. Own data: Dominion-zone demand plus an hourly forecast-weather archive for Ashburn. Own question: how much scheduling flexibility does an operator need before an ML forecast beats simple rules, and is the forecast needed at all?
+Our own idea (not one of the three suggested projects). Own user: ordinary households, not just experts. Own data: five grids on three continents from four public sources. Own question: **where does an ML forecast beat simple rules, and how much longer must you be able to wait before it matters?** We also run a first deep dive on one data-center cluster (Loudoun County, Virginia; see `DECISION.md`).
 
 ## How it works
-- **Data (all public, no personal data):** EIA-930 hourly PJM fuel mix and Dominion-zone demand, Jan 2023 to Nov 2026 (33,912 hours; 4 hours truly missing, never filled); Open-Meteo historical forecasts for Ashburn. Carbon intensity = fuel mix x lifecycle emission factors (IPCC AR5; oil and "other" are our assumptions). Dominion alone has no public fuel mix, so the signal is **PJM-wide average emissions, not Loudoun-specific and not marginal**.
-- **Model:** gradient boosting (scikit-learn HistGradientBoosting) predicting each target hour's intensity from history up to 18:00 the day before, the hours ahead, demand and weather. The job window is the lowest forecast 4-hour block within the allowed delay.
-- **Split:** train 2023-2025, test 2026 (311 usable days, 3 dropped for missing hours). Never shuffled. Hyperparameters fixed; the "unsure" threshold was tuned on 2025 H2.
-- **Baselines:** run immediately; persistence (repeat the latest same-hour values); hour-of-week climatology from training years; perfect foresight as a ceiling.
-- Integrity details and the leakage audit are in `docs/DATA_AUDIT.md`; the go/no-go decision is in `DECISION.md`.
+- **Data (public, no personal data), Jan 2023 to Nov 2026:** EIA-930 hourly fuel mix for PJM (Virginia), California (CISO) and Texas (ERCOT); Energy-Charts (Fraunhofer ISE) for Germany; NESO Carbon Intensity API for Great Britain; Open-Meteo historical weather forecasts for each region. Carbon intensity = fuel mix x lifecycle emission factors (IPCC AR5; oil and "other" fuels are our assumptions). Great Britain uses NESO's official published values.
+- **Split:** train 2023-2025, test every day of 2026 (311-314 days per grid). Never shuffled. Test days with a missing hour are dropped; missing hours are never filled.
+- **Model:** gradient boosting (scikit-learn) predicting the change from the recent same-hour average. Our first version predicted the level directly; it was worse than persistence in California (hourly error 44.1 vs 34.9 g/kWh) because California's grid keeps getting cleaner year over year. Predicting the change fixed that (34.6). That is our one measured model improvement; first-version results are kept in `results/multigrid_summary_direct.csv`.
+- **Baselines:** start at midnight; persistence ("repeat the latest same-hour values"); hour-of-week average from training years; perfect hindsight as a ceiling. 95% intervals use a 7-day block bootstrap.
+- Data-integrity and leakage notes: `docs/DATA_AUDIT.md`.
 
-## Results (2026 test, gCO2/kWh of the chosen 4-hour window; lower is better)
-| Allowed delay | Run now | Persistence | Hour-of-week climatology | Our model | Perfect foresight |
-|---|---|---|---|---|---|
-| 12 h | 353.4 | 329.8 | 342.9 | 330.5 | 325.5 |
-| 24 h | 353.4 | 330.6 | 342.6 | 330.3 | 324.7 |
-| 48 h | 353.4 | 330.6 | 337.2 | 323.6 | 315.8 |
-| 72 h | 353.4 | 330.6 | 331.0 | 318.2 | 309.7 |
+## Results (test = all of 2026; 4-hour job; savings are versus starting at midnight)
+% cleaner than starting at midnight, job can wait 24 hours:
 
-- The model beats climatology by about 12-14 g/kWh at every delay, with 95% intervals (7-day block bootstrap) all below zero, e.g. 24 h: -12.3 [-14.9, -9.9]. Savings versus running immediately: 6.5% at 12-24 h, 8.4% at 48 h, 9.9% at 72 h; perfect foresight would give 8-12%.
-- **Barely any gain over persistence at short delays.** At 12 h and 24 h the model and "repeat yesterday" are statistically tied (24 h: -0.3 [-1.9, +1.3]; history-only model -1.1 [-2.2, -0.1]). The model clearly beats persistence only at 48-72 h (-7.0 and -12.4), partly because persistence cannot use extra slack.
-- A history-only model (no weather or demand forecast) still beats climatology at every delay, so the result does not depend on those two inputs.
-- Robust to emission factors: across five factor sets the model-minus-climatology gap stayed between -11.9 and -20.2 g/kWh.
-- **The "unsure, run now" rule did not help**: no measurable change in cost on test. We keep it in the demo as a safety option and say so.
-- **Where it fails:** the worst days (2026-02-20, 2026-01-09, 2026-01-10) had forecast error of 17-22 g/kWh versus 13.8 on average; two were back to back, and the model picked a window that turned out dirtier than the best one. Weekends are weak (model beats climatology by just 1.1 g/kWh at 24 h vs 16.7 on weekdays). On 6-8% of days the chosen window is dirtier than running immediately.
-- Total headroom is small (8-12%) because PJM average intensity is fairly flat.
+| Region | Our advice | Simple "average week" rule | Perfect hindsight | Model minus simple rule (g/kWh, 95% interval) |
+|---|---|---|---|---|
+| California | 54.7% | 51.7% | 55.6% | -6.6 [-8.2, -4.3] |
+| Texas | 29.7% | 29.3% | 32.0% | -1.3 [-3.3, +0.6] |
+| Virginia | 6.9% | 3.0% | 8.1% | -13.5 [-15.9, -11.4] |
+| Germany | 46.5% | 46.4% | 48.8% | -0.5 [-3.9, +2.1] |
+| Great Britain | 28.8% | 3.8% | 35.1% | -29.9 [-36.2, -24.3] |
+
+If the job can wait 3 days: our advice 59.0 / 34.8 / 10.0 / 52.1 / 41.2% (California / Texas / Virginia / Germany / Britain) versus the simple rule 52.8 / 30.5 / 6.3 / 48.4 / 12.0%. The model beats the simple rule in all five grids, with intervals below zero (-13 to -35 g/kWh).
+
+What this says, honestly:
+- **Shifting helps everywhere**, a lot in solar-rich grids (California, Germany) because midnight is when power is dirtiest.
+- **In the sunny, gas-heavy grids, a simple "run at midday" rule is almost as good as machine learning for same-day shifting.** In Texas and Germany the model is statistically tied with the simple rule at 24 hours. The forecast matters more the longer you can wait.
+- **In wind-driven Great Britain the forecast matters at every delay** (about 30 g/kWh better than the simple rule at 24 h). But **NESO's own official forecast beats ours** by about 4 to 6 g/kWh (95% intervals above zero), so we do not claim to beat the professionals.
+- **Against "repeat the latest values" (persistence)** the model is close at 24 hours (within 1.5 g/kWh in Virginia, California and Texas; 4.8 better in Germany and 7.8 in Britain) and wins clearly at 3 days.
+- Hourly forecast error, model vs persistence (g/kWh): Virginia 14.2 vs 21.4, California 34.6 vs 34.9 (a tie), Texas 39.8 vs 55.0, Germany 59.7 vs 90.1, Britain 29.3 vs 46.9.
+- **Where it fails:** the worst day in each grid was far off the best possible choice: Texas 2026-02-13 and 02-14 (134 and 111 g/kWh worse than the best window), Germany 2026-01-10 (117), Britain 2026-03-05 (87), Virginia 2026-02-20 (43), California 2026-10-11 (21). On 15% of days in Britain and 8% in Virginia the advice was worse than simply starting at midnight; in California never. Failures cluster in time, around sudden shifts in the generation mix after the evening forecast.
+- **Household impact (24 h of flexibility; we assume 3,000 kWh a year for an electric car):** about 73 kg CO2 a year in Virginia, 104 Britain, 301 Texas, 361 California, 508 Germany (95% ranges in `results/household_impact.csv`). Laundry plus dishwasher (assumed 400 kWh a year) saves roughly one-seventh of that.
+- **Limits:** this is the **average** carbon intensity of the whole regional grid, not marginal emissions and not your own electricity company. The baseline is midnight, which is deliberately naive. The demo replays 2026 days; a live version needs live grid feeds.
 
 ## What we'd do next
-1. Use PJM marginal emission rates (needs a PJM Data Miner account), which better reflect what a shifted job actually changes.
-2. Use real day-ahead forecasts instead of archive weather, and test on a second year.
+1. Run it live (UK and German APIs publish forecasts) and add marginal-emission rates.
+2. Add more grids, especially in countries with fast-growing demand, and test a second year.
+
+## Deep dive: Loudoun County data centers
+The same method applied to one cluster (PJM grid, 4-hour AI job): see `DECISION.md` and `docs/DATA_AUDIT.md`. PJM is the flattest of our grids (hourly spread about 34 g/kWh vs 60 to 124 elsewhere), so savings there are the smallest (6.9% at 24 h, 10.0% at 3 days).
 
 ## Sources
 See `CREDITS.md`.

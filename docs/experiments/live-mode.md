@@ -8,3 +8,12 @@ Owner: A (HM-Claude) built it because it was unclaimed. Verdict: **WIN (feature)
 - Never breaks the replay app: any failure (offline, API change) shows a friendly message; the Replay tab is untouched and still the default.
 - Tests: live fetch returned 48 hourly values; simulated offline returns the fallback message; `scripts/check.py` passes (180 replay combinations).
 - Limits: Britain only (Germany's live API not integrated), forecasts change, no marginal emissions.
+
+## Extension: Germany (branch feat/live-germany)
+- The Live tab now also covers Germany using Fraunhofer ISE Energy-Charts' renewable-share forecast
+  (`https://api.energy-charts.info/ren_share_forecast?country=de`, no key, about 27-48 hours ahead).
+- It is a forecast of the renewable SHARE of load, not carbon intensity, so the tab recommends the hours with the highest forecast
+  renewable share and quotes percentages, never grams of CO2. We did not test how well this proxy ranks hours against actual German
+  carbon intensity, so treat it as a convenience feature, not a result.
+- Same graceful offline fallback; the replay path is untouched. Tests: live fetch returned hourly values; simulated offline returns the fallback;
+  `scripts/check.py` passes.

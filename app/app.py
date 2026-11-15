@@ -182,15 +182,16 @@ except Exception:  # live mode must never break the replay app
 
 if _live is not None:
     with gr.Blocks(title="Clean-Hour live") as live_demo:
-        gr.Markdown("### Live: the next 48 hours in Great Britain\nUses the official National Energy System Operator forecast "
-                    "(it beat our own model there in 2026 tests). Needs internet.")
+        gr.Markdown("### Live: the next 48 hours in Great Britain or Germany\nGreat Britain uses the official National Energy System Operator carbon forecast "
+                    "(it beat our own model there in 2026 tests). Germany uses the Fraunhofer ISE renewable-share forecast (more wind and sun = cleaner). Needs internet.")
         with gr.Column():
             l_app = gr.Dropdown(list(_live.APPLIANCES), value="Charge my electric car", label="What do you want to run?")
             l_wait = gr.Radio(list(_live.WAIT), value="Up to 24 hours", label="How long can it wait?")
+            l_region = gr.Radio(_live.REGIONS, value="Great Britain", label="Where?")
             l_go = gr.Button("Find the cleanest time now", variant="primary")
             l_out = gr.HTML()
-        l_go.click(_live.advise_live, [l_app, l_wait], l_out)
-    app = gr.TabbedInterface([demo, live_demo], ["Replay: Virginia and 4 more regions (tested on 2026)", "Live: Great Britain"],
+        l_go.click(_live.advise_live, [l_app, l_wait, l_region], l_out)
+    app = gr.TabbedInterface([demo, live_demo], ["Replay: Virginia and 4 more regions (tested on 2026)", "Live: Great Britain and Germany"],
                              title=None)
 else:
     app = demo

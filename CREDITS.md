@@ -17,6 +17,10 @@ Models and libraries
 - scikit-learn HistGradientBoostingRegressor https://scikit-learn.org/ ; pandas; NumPy; Matplotlib; joblib; Gradio https://www.gradio.app/ ; Jupyter/nbconvert.
 - No pretrained models.
 
+Related work consulted (cited in README, not used as code or data)
+- Wiesner et al., "Let's Wait Awhile: How Temporal Workload Shifting Can Reduce Carbon Emissions in the Cloud", Middleware 2021. https://arxiv.org/abs/2110.13234
+- Joseph, Savadi, Souza, "LiteCast: A Lightweight Forecaster for Carbon Optimizations", arXiv 2511.06187. https://arxiv.org/abs/2511.06187
+
 Briefs
 - Veritas AI Hackathon 2026 Project Briefs (AI + Climate track rules: time split, persistence baseline).
 

@@ -11,7 +11,7 @@
 - Quick switch to Great Britain and California: "We also tested whether this travels. In sunny California a plain 'run at midday' rule is almost as good; in wind-driven Britain the forecast really matters."
 
 1:15-1:45 HOW IT WORKS
-"Public grid data, January 2023 to November 2026. We turn the fuel mix into grams of CO2 per kWh and train gradient boosting on 2023-2025. We test on every day of 2026, never shuffled, against four baselines. Our first model was worse than persistence in California, we fixed it, and we report both. A better forecast was not automatically a better choice, so we trained a second stage to rank hours: it captured 87 to 89 percent of the best possible saving, up from 78 to 81. Limits: this is the PJM-wide average, not Loudoun-only and not marginal."
+"Public grid data, January 2023 to November 2026. We turn the fuel mix into grams of CO2 per kWh and train gradient boosting on 2023-2025. We test on every day of 2026, never shuffled, against four baselines. Our first model was worse than persistence in California, we fixed it, and we report both. A better forecast was not automatically a better choice, so we trained a second stage to rank hours: in Virginia it captured 91 percent of the best possible saving, up from 85, though it did not help on the other four grids. Limits: this is the PJM-wide average, not Loudoun-only and not marginal."
 
 1:45-2:00 NEXT
 "Next: live forecasts, marginal emissions, and a test with a real family and a data-center operator. Takeaway: shifting helps, and the forecast matters most when you can wait more than a day."

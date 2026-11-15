@@ -1,4 +1,4 @@
-# Team task board (two people, each using Claude)
+# Team task board (three agents + three humans)
 
 Rules so we don't collide
 1. `git pull --rebase` before you start, before every commit, and every ~30 minutes. Push small commits often (the history proves the work happened during the hackathon).
@@ -6,6 +6,49 @@ Rules so we don't collide
 3. Tick a task by changing `[ ]` to `[x]` and adding your initials. Commit tasks.md on its own.
 4. Never commit big data (data/*.csv is git-ignored). Results CSVs/PNGs in results/ are fine.
 5. Deadline: Sun Nov 15, 11:59 PM ET. Submit a first version by 9:30 PM ET.
+
+
+## PHASED PLAN (branch-safe; read this first)
+Agents: **A** = Harshal's Claude (data/eval, results/), **S** = Sidharth's Claude (experiments, app polish), **C** = Aarush's Perplexity agent (review, research). Humans own S1-S3.
+Clock (ET): now = Sat Nov 14 night. Hard dates: experiments freeze **Sun 3 PM**, merge window closes **Sun 6 PM**, submit first version **Sun 9:30 PM**, deadline Sun 11:59 PM.
+
+### Branch rules (so nobody can break the submission)
+1. `main` is ALWAYS submittable. `python -I -W ignore scripts/check.py` must print ALL CHECKS PASSED on main at all times (about 10 s).
+2. Every experiment lives on its own branch `exp/<name>` (or `feat/<name>`), created from the latest main: `git checkout main && git pull --rebase && git checkout -b exp/<name>`.
+3. A branch may ONLY add new files under `src/experiments/<name>/`, `results/experiments/<name>/`, `docs/experiments/<name>.md`. It must NOT edit README.md, CREDITS.md, app/, src/multigrid.py, src/grids.py, results/*.csv, submission/ or notebooks/. Need a change there? Put proposed text in `docs/experiments/<name>.md` under "Proposed README text" and the owner (A for numbers/results, S for app) integrates it at merge time.
+4. Each branch ends with `docs/experiments/<name>.md` containing: question, exact run command, data/split used, results table with 95% intervals, honest verdict (WIN / TIE / LOSS), and the kill rule it was judged by.
+5. Merge gate (A merges, one branch at a time): (a) `scripts/check.py` passes on the branch AND on main after merge; (b) the run command reproduces the numbers within 0.1 g/kWh; (c) no test-period data used for training or tuning; (d) verdict is WIN or an informative TIE/LOSS worth one honest sentence. Merge with `git checkout main && git pull --rebase && git merge --no-ff exp/<name> && python -I -W ignore scripts/check.py && git push`. LOSS branches are still merged if the doc is useful (honest negative results score well), but add no README claims.
+6. Push your branch often: `git push -u origin exp/<name>`. Check `git fetch && git branch -a` and `git log origin/main --oneline -5` before starting and every ~30 min.
+7. Never force-push. Never rewrite main. If a merge conflicts, the branch owner rebases onto main (`git rebase origin/main`), re-runs check.py, and pushes again.
+
+### Phase 0: harden main (A, now to Sat 11 PM)
+- [ ] 0.1 Land results/ef_sensitivity_multigrid.csv (needs the slow EIA fuel download; running) [A]
+- [ ] 0.2 Execute notebooks/clean_hour.ipynb with outputs and commit [A]
+- [ ] 0.3 Known minor issue: Virginia persistence has 3 NaN rows on 2026-11-03 (one missing hour); fix best_start to ignore NaN windows, rerun multigrid, update README numbers if they move [A]
+- [x] 0.4 scripts/check.py health check [A]
+- [x] 0.5 DECISION.md clarifying note (first model vs final model) [A]
+- [ ] 0.6 Tag `v1-candidate` when 0.1-0.3 are done: `git tag v1-candidate && git push --tags` [A]
+
+### Phase 1: novelty experiments (parallel branches, Sat night to Sun 3 PM)
+Each is a separate question a judge can understand; each is cheap and honest. Pick by owner; do not start two agents on the same branch.
+- [ ] E1 `exp/decision-focused-grids` [A]: Sid's decision stacker (train to RANK hours, not predict levels) on all five grids, rolling-origin May-Nov 2026. Question: does "train for the decision" transfer beyond Virginia? Metric: % of perfect saving captured, stacker minus first model, 95% interval. Kill rule: if it does not beat the first model with an interval below zero in at least 3 of 5 grids, report as TIE.
+- [ ] E2 `exp/regret-aware-advice` [S]: replace the "unsure" threshold (which gave no gain) with an uncertainty signal (disagreement between model, history-only model, persistence). Question: can we flag the days the advice is risky? Metric: share of harmful days (worse than midnight) removed vs share of good days lost; cost per day. Kill rule: no reduction in harmful days with interval excluding zero = LOSS (still document).
+- [ ] E3 `exp/estimated-marginal` [A or C]: we only use AVERAGE intensity. Estimate a MARGINAL intensity proxy from public data (regress hourly change in fuel mix on change in demand per grid, e.g. which fuel moves when demand moves) and check whether the cleanest hours by average match the cleanest hours by marginal. Metric: rank correlation and overlap of cleanest 4 hours. Purely analysis; no claim beyond "average and marginal rankings agree X% of days". Cite any method you borrow.
+- [ ] E4 `exp/year-robustness` [C]: train 2023-2024, test 2025 (and rolling by quarter in 2026) to check the conclusions are not a quirk of 2026. Reuse src/multigrid.py functions by import; do not edit it. Metric: same tables as the README, same intervals.
+- [ ] E5 `exp/related-work` [C]: one verified page of related work with working links (found so far: LiteCast arXiv 2511.06187 "timing and ordering matter more than error"; Wiesner et al. "Let's Wait Awhile" arXiv 2110.13234; decision-focused carbon forecasting for data-center jobs, PESGM 2026; Chen et al. Applied Energy 2025). Open each source and write what it actually claims, how our work differs (households, five grids, 2026 held-out, honest ties), no overclaiming "novel". Output docs/experiments/related-work.md with proposed README paragraph.
+- [ ] E6 `exp/workload-flexibility` [C]: research (cited) which data-center and household workloads have 12/24/72 h of slack, with a table and sources; replaces our uncited statement in DECISION.md. Output docs/experiments/workload-flexibility.md.
+- [ ] E7 `feat/live-mode` [S]: app "Today" tab using live public APIs for Great Britain (NESO) and Germany (Energy-Charts) with the saved-replay fallback; must not change the default Virginia replay path. Merge only if it never crashes offline.
+- [ ] E8 `exp/user-test` [human + any agent]: 10-minute session with one parent or neighbour on the app; record what confused them and one quote in docs/experiments/user-test.md. Highest value for the Clarity and Impact criteria.
+- [ ] E9 `exp/flood-backup` [parked]: only if the main project is found to leak. Data feasibility is already in DECISION.md.
+
+### Phase 2: merge window (Sun noon to 6 PM) [A merges]
+- [ ] 2.1 Merge branches in order of verdict value: E1, E4, E5, E3, E2, E6, E7, E8 (skip any failing the gate).
+- [ ] 2.2 After each merge A updates README Results/Related-work with ONLY numbers copied from the merged results csv, runs scripts/check.py, pushes.
+- [ ] 2.3 S adds app wording for any adopted feature; C re-reviews the final README against the rubric (docs/CODE_REVIEW.md checklist).
+
+### Phase 3: freeze and submit
+- [ ] 3.1 Sun 6 PM: no more merges except typo fixes; tag `submission` once README, notebook (executed), CREDITS and FORM_ANSWERS agree.
+- [ ] 3.2 Humans: S1-S3 below, record video (B5), submit by 9:30 PM ET; resubmit only if something is wrong.
 
 ## The project (new direction, see README once updated)
 Clean-Hour: "When is electricity cleanest tomorrow?" A simple tool for ordinary households (charge the EV, run the dishwasher or laundry) in five grids on three continents: Virginia, California, Texas, Germany, Great Britain. Question we test: in which grids does an ML forecast actually beat simple rules, and how much CO2 does shifting save? The Loudoun data-center work becomes one case study (src/sweep.py, DECISION.md).

@@ -1,0 +1,39 @@
+{
+ "variant": "v4_quantile",
+ "grid": "de",
+ "val_baseline": 201.3189640248969,
+ "val_table": [
+  {
+   "quantile": 0.5,
+   "val": 202.6488699089805
+  },
+  {
+   "quantile": 0.75,
+   "val": 203.58330652293608
+  },
+  {
+   "quantile": 0.9,
+   "val": 201.9088733987219
+  }
+ ],
+ "adopted_on_validation": false,
+ "quantile_used": "baseline (squared loss)",
+ "test": {
+  "24": {
+   "base": 194.7971347116988,
+   "variant": 194.7971347116988,
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  "72": {
+   "base": 174.54953330042946,
+   "variant": 174.54953330042946,
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  }
+ },
+ "test_days": 314,
+ "seconds": 16
+}

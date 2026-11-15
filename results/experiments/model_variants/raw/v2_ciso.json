@@ -1,0 +1,36 @@
+{
+ "variant": "v2_features",
+ "grid": "ciso",
+ "val_baseline": 192.03148485223858,
+ "val_variant": 192.84402743700608,
+ "adopted_on_validation": false,
+ "n_features": 24,
+ "features_added": [
+  "ci_hod_mean14d",
+  "ci_hod_std14d",
+  "ci_hod_min7d",
+  "gas_share_lag",
+  "coal_share_lag",
+  "wind_share_lag",
+  "solar_share_lag",
+  "nuclear_share_lag"
+ ],
+ "test": {
+  "24": {
+   "base": 99.7073753241983,
+   "variant": 99.91290767784749,
+   "diff": 0.20553235364917247,
+   "lo": -0.07897103977289753,
+   "hi": 0.5338699806975837
+  },
+  "72": {
+   "base": 90.14157818952714,
+   "variant": 89.2232639934998,
+   "diff": -0.9183141960273239,
+   "lo": -2.227201862708166,
+   "hi": 0.43909331040314975
+  }
+ },
+ "test_days": 314,
+ "seconds": 16
+}

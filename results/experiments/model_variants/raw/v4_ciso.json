@@ -1,0 +1,39 @@
+{
+ "variant": "v4_quantile",
+ "grid": "ciso",
+ "val_baseline": 192.03148485223858,
+ "val_table": [
+  {
+   "quantile": 0.5,
+   "val": 192.95722582364323
+  },
+  {
+   "quantile": 0.75,
+   "val": 193.15181612865283
+  },
+  {
+   "quantile": 0.9,
+   "val": 193.91100910637482
+  }
+ ],
+ "adopted_on_validation": false,
+ "quantile_used": "baseline (squared loss)",
+ "test": {
+  "24": {
+   "base": 99.7073753241983,
+   "variant": 99.7073753241983,
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  "72": {
+   "base": 90.14157818952714,
+   "variant": 90.14157818952714,
+   "diff": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  }
+ },
+ "test_days": 314,
+ "seconds": 17
+}

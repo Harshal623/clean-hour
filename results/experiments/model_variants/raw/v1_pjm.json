@@ -1,0 +1,127 @@
+{
+ "variant": "v1_hpo",
+ "grid": "pjm",
+ "val_baseline": 338.7609628682028,
+ "val_best": {
+  "max_depth": 5,
+  "learning_rate": 0.05,
+  "min_samples_leaf": 300,
+  "val": 338.6024722520009
+ },
+ "adopted_on_validation": true,
+ "chosen": {
+  "max_depth": 5,
+  "learning_rate": 0.05,
+  "min_samples_leaf": 300
+ },
+ "val_table": [
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 339.0244598686383
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 338.6024722520009
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 338.82265573827306
+  },
+  {
+   "max_depth": 5,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 300,
+   "val": 338.7217075667563
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 339.4644423272657
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 339.0575624150232
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 339.32798981329927
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 50,
+   "val": 339.0746590897348
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 100,
+   "val": 338.73399873193307
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 50,
+   "val": 338.93739757194527
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 300,
+   "val": 338.99135064967106
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.1,
+   "min_samples_leaf": 100,
+   "val": 339.1396787227194
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 339.36769054037507
+  },
+  {
+   "max_depth": 3,
+   "learning_rate": 0.03,
+   "min_samples_leaf": 300,
+   "val": 339.2458743874767
+  },
+  {
+   "max_depth": 7,
+   "learning_rate": 0.05,
+   "min_samples_leaf": 100,
+   "val": 338.80629932888
+  }
+ ],
+ "test": {
+  "24": {
+   "base": 329.1011517555113,
+   "variant": 329.0785795313927,
+   "diff": -0.022572224118590795,
+   "lo": -0.3266176423165697,
+   "hi": 0.1729810705169292
+  },
+  "72": {
+   "base": 318.11524211200793,
+   "variant": 317.84303339607334,
+   "diff": -0.27220871593459833,
+   "lo": -1.0797380753345156,
+   "hi": 0.5232305195147436
+  }
+ },
+ "test_days": 311,
+ "seconds": 32
+}

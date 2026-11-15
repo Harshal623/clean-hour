@@ -1,0 +1,36 @@
+{
+ "variant": "v2_features",
+ "grid": "erco",
+ "val_baseline": 254.53010456464,
+ "val_variant": 253.1065172133122,
+ "adopted_on_validation": true,
+ "n_features": 24,
+ "features_added": [
+  "ci_hod_mean14d",
+  "ci_hod_std14d",
+  "ci_hod_min7d",
+  "gas_share_lag",
+  "coal_share_lag",
+  "wind_share_lag",
+  "solar_share_lag",
+  "nuclear_share_lag"
+ ],
+ "test": {
+  "24": {
+   "base": 237.79126126434352,
+   "variant": 236.91818022500024,
+   "diff": -0.8730810393432784,
+   "lo": -2.189564549870832,
+   "hi": 0.31716387410217933
+  },
+  "72": {
+   "base": 220.58490895985426,
+   "variant": 219.69757121664495,
+   "diff": -0.8873377432092978,
+   "lo": -2.819143341098789,
+   "hi": 1.3658546237125697
+  }
+ },
+ "test_days": 314,
+ "seconds": 15
+}

@@ -1,0 +1,31 @@
+{
+ "variant": "v2_features",
+ "grid": "gb",
+ "val_baseline": 87.87194293478261,
+ "val_variant": 86.29313858695652,
+ "adopted_on_validation": true,
+ "n_features": 18,
+ "features_added": [
+  "ci_hod_mean14d",
+  "ci_hod_std14d",
+  "ci_hod_min7d"
+ ],
+ "test": {
+  "24": {
+   "base": 85.51711783439491,
+   "variant": 85.39888535031847,
+   "diff": -0.11823248407643312,
+   "lo": -1.1783539012738853,
+   "hi": 0.859892515923567
+  },
+  "72": {
+   "base": 70.52945859872611,
+   "variant": 70.43113057324841,
+   "diff": -0.09832802547770701,
+   "lo": -1.1624701433121019,
+   "hi": 0.9554737261146499
+  }
+ },
+ "test_days": 314,
+ "seconds": 14
+}

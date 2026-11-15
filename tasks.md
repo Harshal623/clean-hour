@@ -23,11 +23,11 @@ Clock (ET): now = Sat Nov 14 night. Hard dates: experiments freeze **Sun 3 PM**,
 
 ### Phase 0: harden main (A, now to Sat 11 PM)
 - [x] 0.1 [A, done: conclusions unchanged under 5 emission-factor sets] Land results/ef_sensitivity_multigrid.csv
-- [ ] 0.2 Execute notebooks/clean_hour.ipynb with outputs and commit [A]
+- [x] 0.2 [AG, verified: 19 cells, code cells exec 1-10 all with outputs, covers multigrid + failures + sensitivity + household + stacker] Execute notebooks/clean_hour.ipynb with outputs and commit [A]
 - [x] 0.3 [A, done: nanargmin fix, rerun reproduces everything to 0.02 g/kWh; README numbers unchanged] Known minor issue: Virginia persistence has 3 NaN rows on 2026-11-03 (one missing hour); fix best_start to ignore NaN windows, rerun multigrid, update README numbers if they move [A]
 - [x] 0.4 scripts/check.py health check [A]
 - [x] 0.5 DECISION.md clarifying note (first model vs final model) [A]
-- [ ] 0.6 Tag `v1-candidate` when 0.1-0.3 are done: `git tag v1-candidate && git push --tags` [A]
+- [x] 0.6 [AG] Tag `v1-candidate` when 0.1-0.3 are done: `git tag v1-candidate && git push --tags` [A]
 
 ### Phase 1: novelty experiments (parallel branches, Sat night to Sun 3 PM)
 Each is a separate question a judge can understand; each is cheap and honest. Pick by owner; do not start two agents on the same branch.
@@ -65,7 +65,7 @@ Owns: app/, README.md, CREDITS.md, docs/VIDEO_SCRIPT.md, submission/, notebooks/
 - [x] B1 [done early by HM-Claude, new simple UI is in app/app.py; B may polish wording/design] Rebuild app/app.py as a simple household app: pick your region, pick an appliance (EV 4h, dishwasher 2h, laundry 2h, water heater 3h), pick how long it can wait (tonight / within a day / within 3 days), pick a day. Output a big plain-English answer, a green-to-red hourly colour bar, and "you save about X% / Y g CO2". Reads results/test_predictions_all.csv.gz (columns: grid, day, j, y, pred, clim, persist). No jargon on the main screen; honest note in a collapsed section.
 - [x] B2 [done by HM-Claude, B please review wording and fix anything wrong] Rewrite README.md in the Veritas template for the new global/household framing (numbers come from results/multigrid_summary.csv once A2 lands; until then leave TODO markers, never invent numbers)
 - [x] B3 [done by HM-Claude, B please review] Update CREDITS.md (add Energy-Charts, NESO Carbon Intensity API, EIA CISO/ERCOT) and submission/FORM_ANSWERS.md (title, pitch, what we added)
-- [ ] B4 [HM-Claude building: notebooks/clean_hour.ipynb, to execute after sensitivity finishes] Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
+- [x] B4 [AG, verified: section 4 reads results/ef_sensitivity_multigrid.csv with outputs; committed in 240ff86] Notebook: add a short multi-grid section once A2 lands, execute it, commit with outputs
 - [ ] B5 Record the 2-minute video using docs/VIDEO_SCRIPT.md (human step)
 
 ## Person C (Aarush's Perplexity agent): independent review

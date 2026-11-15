@@ -50,7 +50,7 @@ Same method, same split, % cleaner than starting at midnight with 24 hours of fl
 Shifting flexible computing to cleaner hours is well studied: Wiesner et al., "Let's Wait Awhile" (Middleware 2021, arXiv 2110.13234) analysed Germany, Great Britain, France and California in 2020; LiteCast (Joseph, Savadi and Souza, arXiv 2511.06187) reports across 50 regions that preserving the ranking of hours matters more than forecast error. We do not claim these ideas as new. What we add is a held-out 2026 test with simple baselines and honest intervals, a household framing, a Virginia/Loudoun focus, and a boundary condition: the benefit of ranking-focused training appeared only in the flattest grid.
 
 ## Limits
-Average, not marginal, emissions of a whole regional grid. The savings baseline (midnight) is deliberately naive. The demo replays 2026 days; a live version needs live grid feeds. No user test has been done yet.
+Average, not marginal, emissions of a whole regional grid. A coarse estimate of marginal intensity (net-load regression fitted on 2023-2025; `docs/experiments/estimated-marginal.md`) agrees with our advice in Virginia and California (68.8% and 89.8% of 2026 days) but not in Texas or Germany, where it suggests the benefit of shifting at the margin could be smaller or absent; that estimate is a proxy and unvalidated. The savings baseline (midnight) is deliberately naive. The demo replays 2026 days; a live version needs live grid feeds. No user test has been done yet.
 
 ## What we'd do next
 1. Use PJM marginal emission rates and live forecasts, and test a second year.

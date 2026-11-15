@@ -15,6 +15,7 @@ Emission factors
 
 Models and libraries
 - scikit-learn HistGradientBoostingRegressor https://scikit-learn.org/ ; pandas; NumPy; Matplotlib; joblib; Gradio https://www.gradio.app/ ; Jupyter/nbconvert.
+- PyTorch https://pytorch.org/ (Transformer encoder for experiment E11, trained on a free Google Colab T4 GPU). Ranking-loss idea (ListNet) from Cao et al., "Learning to Rank: From Pairwise Approach to Listwise Approach", ICML 2007.
 - No pretrained models.
 
 Related work consulted (cited in README, not used as code or data)
@@ -28,4 +29,6 @@ Briefs
 - Veritas AI Hackathon 2026 Project Briefs (AI + Climate track rules: time split, persistence baseline).
 
 AI tools
-- Claude Code (Anthropic), used by the team for brainstorming, data loaders, evaluation code, the Gradio app and drafting the write-up. The team reviewed the results and can explain every part.
+- Claude Code and Claude chat (Anthropic), used by the team for brainstorming, data loaders, evaluation code, the Gradio app and drafting the write-up. https://claude.ai
+- Perplexity, used by Aarush for the independent code review and related-work research (docs/CODE_REVIEW.md). https://www.perplexity.ai
+- The team reviewed every result and can explain every part.

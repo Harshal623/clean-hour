@@ -1,45 +1,43 @@
-# E3: does average-based shifting also help by an ESTIMATED marginal measure? (branch exp/estimated-marginal)
+# E3: does shifting by AVERAGE intensity also help by an estimated MARGINAL intensity? (branch exp/estimated-marginal)
 
-Owner: A (HM-Claude). Verdict: **MIXED.** Holds in Virginia and California; the proxy says it may not in Texas and Germany.
+Owner: A (HM-Claude). Verdict: **MIXED. Agrees in Virginia and California, disagrees in Texas and Germany.** Coarse proxy; see caveats.
 
 ## Question
-Our savings use AVERAGE grid intensity. Critics say the right signal is the MARGINAL plant. PJM's marginal rates need
-an account and the other grids publish none, so we estimate a coarse proxy and check whether the hours that are cleanest
-by average are also cleaner by the proxy.
+Critics say scheduling should follow the marginal plant, not the grid average. Public marginal rates for our grids are not
+freely available (PJM's need an account), so we estimate a coarse proxy and check whether following the average-based
+advice also lowers it.
 
-## Method (coarse by design)
-Net-load regression in the spirit of Hawkes (2010) and Siler-Evans et al. (2012): for each (season x 6-hour block) group,
-regress the hourly change of each dispatchable fuel on the hourly change in net load (generation minus wind minus solar);
-negative slopes set to 0 and slopes normalised to sum to 1; marginal intensity = sum(share x emission factor).
-Fitted on 2023-2025 only; evaluated on 2026 test days with the actual hourly intensity (hindsight, 24 h of slack, 4-hour job).
-This gives a daily SHAPE per block and season, not a dispatch model, and it cannot validate itself against real marginal rates.
-Run: `python -I -W ignore src/experiments/estimated_marginal/run.py`. Britain excluded (no fuel mix in our pipeline).
+## Method (src/experiments/estimated_marginal/run.py)
+Net-load regression in the spirit of Hawkes (2010) and Siler-Evans et al. (2012): in each (season x 6-hour block) group,
+regress the hourly change of each dispatchable fuel (coal, gas, oil, hydro, nuclear, other) on the hourly change in net load
+(generation minus wind minus solar); negative slopes set to zero and the rest normalised to sum to 1; marginal intensity =
+sum(share x emission factor). Fitted on 2023-2025 only; applied to 2026 days. Britain excluded (no fuel mix in our pipeline).
+Run: `python -I -W ignore src/experiments/estimated_marginal/run.py`.
 
-## Results (g/kWh saved versus starting at midnight; hindsight best window by AVERAGE intensity)
-| Region | days | saved by the average rule, measured by AVERAGE | measured by ESTIMATED MARGINAL | % days it lowers estimated marginal | saved if we had optimised the marginal proxy instead |
+## Results (24 h delay, 4-hour job, 2026 test days, hindsight windows; g/kWh)
+| Region | Days | Average intensity saved by the average rule | Estimated marginal saved by the average rule | Days the average rule lowers the marginal proxy | Average intensity saved by the marginal rule |
 |---|---|---|---|---|---|
-| Virginia | 311 | 28.7 | +36.4 | 68.8% | 94.9 (and -4.9 by average) |
-| California | 314 | 122.3 | +42.9 | 89.8% | 83.9 (and +91.4 by average) |
-| Texas | 314 | 108.4 | -17.8 | 0.0% | 20.7 (and -9.1 by average) |
-| Germany | 314 | 177.9 | -13.8 | 32.5% | 36.6 (and -4.1 by average) |
+| Virginia | 311 | 28.7 | +36.4 | 69% | -4.9 |
+| California | 314 | 122.3 | +42.9 | 90% | +91.4 |
+| Texas | 314 | 108.4 | -17.8 | 0% | -9.1 |
+| Germany | 314 | 177.9 | -13.8 | 33% | -4.1 |
 
-Estimated marginal intensity (lifecycle g/kWh): Virginia 396-569, California 181-373, Texas 514-582, Germany 600-699
-(by season and block; see `results/experiments/estimated_marginal/`).
+Estimated marginal intensity is high everywhere (Virginia about 466, California 267, Texas 551, Germany 635 g/kWh on average),
+because dispatchable plants that respond to load are mostly gas and coal.
 
 ## Honest reading
-- In Virginia and California, moving to the cleanest hours by average also lowers the estimated marginal intensity on most
-  days, so the main claim holds under this proxy.
-- In Texas and Germany the proxy says the average-cleanest hours (midday solar) are NOT cleaner at the margin (coal or gas
-  still sets the margin; solar just displaces average). If the proxy is right, average-based savings there overstate the
-  effect of one extra shifted load. We cannot confirm the proxy, so this is a limitation, not a finding about those grids.
-- In Virginia the hours that minimise estimated marginal intensity are NOT the hours that minimise average intensity
-  (only 1% of days have similar windows; shifting by marginal would cost -4.9 g/kWh on the average measure). Average and
-  marginal rank hours differently there, so the result depends on which one you believe.
+- Where the average-based advice also lowers the marginal proxy (Virginia, California) the two signals agree.
+- In Texas and Germany the average-optimal window is slightly WORSE by the marginal proxy (-17.8 and -13.8 g/kWh), so the
+  headline savings there are average-emissions savings that the marginal view does not confirm.
+- The proxy is coarse (one value per season and 6-hour block, no dispatch model), its Texas profile is nearly flat
+  (514-582), and day-to-day marginal variation is invisible to it. Treat as a sanity check, not a result to headline.
+- Implication for the write-up: keep the limit "average, not marginal" and add that a rough marginal check agreed for
+  Virginia and California but not for Texas and Germany.
 
 ## Proposed README text (owner integrates)
-"Limits: we use average, not marginal, emissions. A coarse estimate of marginal intensity (net-load regression, fitted on
-2023-2025) agrees with our advice in Virginia and California (68.8% and 89.8% of 2026 days) but not in Texas or Germany, where
-it suggests the benefit of shifting at the margin could be smaller or absent. The estimate is a proxy and unvalidated."
+"A rough marginal-emissions check (net-load regression, fitted on 2023-2025) agreed with the average-based advice in Virginia
+and California but not in Texas and Germany, where the marginal plant is almost always gas or coal
+(docs/experiments/estimated-marginal.md)."
 
 ## Files
 `results/experiments/estimated_marginal/marginal_agreement.csv`, `estimated_marginal_profiles.png`

@@ -1,4 +1,4 @@
-# Credits
+# Credits.
 
 Datasets (all public)
 - EIA Hourly Electric Grid Monitor (EIA-930): fuel mix, demand and demand forecast for PJM, CISO (California) and ERCOT (Texas); Dominion zone demand (Virginia deep dive). US government data. https://www.eia.gov/electricity/gridmonitor/

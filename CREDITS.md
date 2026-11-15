@@ -20,6 +20,9 @@ Models and libraries
 Related work consulted (cited in README, not used as code or data)
 - Wiesner et al., "Let's Wait Awhile: How Temporal Workload Shifting Can Reduce Carbon Emissions in the Cloud", Middleware 2021. https://arxiv.org/abs/2110.13234
 - Joseph, Savadi, Souza, "LiteCast: A Lightweight Forecaster for Carbon Optimizations", arXiv 2511.06187. https://arxiv.org/abs/2511.06187
+- Radovanovic et al., "Carbon-Aware Computing for Datacenters", arXiv 2106.11750. https://arxiv.org/abs/2106.11750
+- Sohrabbeig, Ardakanian, Musilek, "Learning to Reduce Data Center Carbon Emissions via Forecast-Integrated Workload Scheduling" (University of Alberta). https://sites.ualberta.ca/~oardakan/files/PESGM26.pdf
+- Chen, Xu, Wu, Sun, "Prediction optimization fusion learning-based approach for day-ahead carbon aware scheduling in distribution network", Applied Energy 397 (2025) 126369. https://doi.org/10.1016/j.apenergy.2025.126369
 
 Briefs
 - Veritas AI Hackathon 2026 Project Briefs (AI + Climate track rules: time split, persistence baseline).

@@ -89,7 +89,7 @@ def build_rows(g, w, ci, with_test=True):
 def best_start(profile, slip):
     """profile: length NT array. Pick the start (0..slip) minimising mean over JOB hours."""
     c = np.convolve(profile, np.ones(JOB) / JOB, mode="valid")  # c[i] = mean of profile[i:i+4]
-    return int(np.argmin(c[:slip + 1]))
+    return int(np.nanargmin(c[:slip + 1]))  # windows touching a missing hour (NaN) are ignored
 
 
 def window_cost(y, start):

@@ -24,7 +24,7 @@ Clock (ET): now = Sat Nov 14 night. Hard dates: experiments freeze **Sun 3 PM**,
 ### Phase 0: harden main (A, now to Sat 11 PM)
 - [ ] 0.1 Land results/ef_sensitivity_multigrid.csv (needs the slow EIA fuel download; running) [A]
 - [ ] 0.2 Execute notebooks/clean_hour.ipynb with outputs and commit [A]
-- [ ] 0.3 Known minor issue: Virginia persistence has 3 NaN rows on 2026-11-03 (one missing hour); fix best_start to ignore NaN windows, rerun multigrid, update README numbers if they move [A]
+- [x] 0.3 [A, done: nanargmin fix, rerun reproduces everything to 0.02 g/kWh; README numbers unchanged] Known minor issue: Virginia persistence has 3 NaN rows on 2026-11-03 (one missing hour); fix best_start to ignore NaN windows, rerun multigrid, update README numbers if they move [A]
 - [x] 0.4 scripts/check.py health check [A]
 - [x] 0.5 DECISION.md clarifying note (first model vs final model) [A]
 - [ ] 0.6 Tag `v1-candidate` when 0.1-0.3 are done: `git tag v1-candidate && git push --tags` [A]

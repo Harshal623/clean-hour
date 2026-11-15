@@ -151,7 +151,7 @@ def main():
     if len(sys.argv) > 1:
         MODE = sys.argv[1]
     print("target mode:", MODE)
-    summ, allte, maes = [], [], {}
+    summ, allte, allext, maes = [], [], [], {}
     for key in GRIDS:
         S, te, costs, mae, n_all = run_grid(key)
         print(f"\n=== {GRIDS[key][0]}: test days kept {len(costs)} of {n_all}; "
@@ -171,8 +171,13 @@ def main():
         t = te[["day", "j", "y", "pred", "clim", "persist"]].copy()
         t.insert(0, "grid", key)
         allte.append(t.round(1))
+        ext = te[["day", "j", "y", "pred", "pred_hist", "clim", "persist", "hour", "dow", "temperature_2m",
+                  "wind_speed_10m", "cloud_cover", "shortwave_radiation"]].copy()
+        ext.insert(0, "grid", key)
+        allext.append(ext.round(2))
     pd.concat(summ).to_csv("results/multigrid_summary.csv", index=False)
     pd.concat(allte).to_csv("results/test_predictions_all.csv.gz", index=False)
+    pd.concat(allext).to_csv("results/test_predictions_all_ext.csv.gz", index=False)  # + history-only model, weather
     json.dump(maes, open("results/multigrid_hourly_mae.json", "w"), indent=1)
 
 

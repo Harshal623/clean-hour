@@ -15,9 +15,9 @@ Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next 
 
 ## 0:15-1:15 The demo
 **Move 1 (0:15).** Circle the mouse over the three inputs, then over the green card.
-**Say:** "A Northern Virginia family plugs in the car at 6 PM, and it can wait until tomorrow. Clean-Hour says: start Friday at noon, about 12% cleaner than midnight. Green hours are cleaner."
+**Say:** "A Northern Virginia family plugs in the car at 6 PM, and it can wait until tomorrow. Clean-Hour says: start Friday at noon, about 12% cleaner than midnight."
 
-**Move 2 (0:27).** Slide the mouse along the colored strip and stop on the black outline. Say nothing extra; the legend explains it.
+**Move 2 (0:27).** Slide the mouse along the colored strip and stop on the black outline. Say: "Green is cleaner." (optional)
 
 **Move 3 (0:33).** Click the bar "What actually happened that day? (hindsight check)".
 **Say:** "This is a real day from 2026 that the model never saw. Following the advice cut CO2 by 11%, which was the best possible."
@@ -26,10 +26,10 @@ Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next 
 **Say:** "If the car can wait three days, it picks Sunday at noon, and the real saving was 35%."
 
 **Move 5 (0:52).** Click the day box, type `09 Jan`, press Enter (Fri 09 Jan 2026). Point at the hindsight text showing -12%.
-**Say:** "Here's where it fails. On January 9th it said Saturday at 1 AM, and that was actually 12% dirtier. The fuel mix shifted overnight. That happens on about 8% of days."
+**Say:** "Here's where it fails. On January 9th it said Saturday at 1 AM, and that was actually 12% dirtier. The fuel mix shifted overnight. That's rare: compared with charging at 6 PM, the advice backfires on about 2% of days."
 
 **Move 6 (1:05).** Click "How accurate is this? (honest numbers)".
-**Say:** "Across every day of 2026, our advice is 10% cleaner than midnight. A simple rule gets 6, and perfect hindsight gets 12."
+**Say:** "Across every day of 2026, that's 10% cleaner than midnight, and 13% cleaner than charging the moment you plug in at 6. Even perfect hindsight only gets 15."
 
 ## 1:15-1:45 How it works
 **Screen:** switch to the chart tab at 1:15. Point at the Virginia bars when you mention them.
@@ -44,4 +44,4 @@ Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next 
 - Upload to YouTube as Unlisted (or Drive with "anyone with the link can view"), then open the link in an incognito window.
 - Paste the link into the form.
 
-Numbers in this script were checked against the app and the results files on Nov 15: May 1 gives 12% predicted and 11% actual at 24 h, 35% actual at 3 days; Jan 9 gives -12% at 3 days; the Virginia scorecard at 3 days shows 353, 318 (10%), 331 (6%) and 310 (12%).
+Numbers in this script were checked against the app and the results files on Nov 15: May 1 gives 12% predicted and 11% actual at 24 h, 35% actual at 3 days; Jan 9 gives -12% at 3 days; the Virginia scorecard at 3 days shows 353, 318 (10%), 331 (6%) and 310 (12%). The 6 PM numbers (12.7%, rounded to 13; 15.0% for hindsight; 2.3% of days) are in `results/experiments/plug_in_baseline.csv` and are spoken, not shown on screen.

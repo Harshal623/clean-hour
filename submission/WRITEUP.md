@@ -1,7 +1,6 @@
 # Clean-Hour: when is Northern Virginia's electricity cleanest?
 
 **Track:** Climate · **Team:** Harshal Mahadik, Aarush Gutha, Sidharth Mantri (TJHSST)
-**Code:** https://github.com/Harshal623/clean-hour (Colab: `notebooks/clean_hour_colab.ipynb`, about a minute)
 
 **One takeaway: a model that predicts grid carbon better is not automatically better at choosing the cleanest hours.**
 

@@ -3,7 +3,7 @@
 **Track:** Climate
 **Team:** Harshal Mahadik, Aarush Gutha, Sidharth Mantri (TJHSST)
 **Our place:** Northern Virginia on the PJM grid, home of Loudoun County's data-center corridor.
-**Run it in Google Colab (about 2 minutes, no downloads):** [Open in Colab](https://colab.research.google.com/github/Harshal623/clean-hour/blob/main/notebooks/clean_hour_colab.ipynb) (`notebooks/clean_hour_colab.ipynb`).
+**Run it in Google Colab (about 2 minutes, no downloads):** [Open in Colab](https://colab.research.google.com/github/Harshal623/clean-hour/blob/main/notebooks/clean_hour_colab.ipynb) (`notebooks/clean_hour_colab.ipynb`: every file of our code is shown in it, and it retrains and tests from the bundled data).
 **Demo:** `python app/app.py` (simple web app; a Replay tab tested on 2026 days and a Live tab for Great Britain (NESO's official carbon forecast) and Germany (renewable-share forecast)). **Notebook with outputs:** `notebooks/clean_hour.ipynb` (Virginia deep dive: `notebooks/virginia_deep_dive.ipynb`; PyTorch Transformer, run on a Colab GPU: `src/experiments/torch_transformer/colab.ipynb`). **One-page write-up:** `submission/WRITEUP.md`.
 
 > A forecast that predicts carbon better is not automatically better at choosing the cleanest hours. In Virginia, training a second stage to rank hours captured 91% of the best possible saving against 85% for the plain model; that gain did not transfer to California, Texas, Germany or Britain, and we report where it holds and where it does not.
@@ -14,6 +14,7 @@ Electricity is not equally clean all day. The power plants that run at 7 PM are 
 ## What we built
 - **Who/when:** a Northern Virginia household (or a data-center operations lead) in the evening, deciding when to start something tomorrow, or within three days.
 - **In:** the appliance or job length, how long it can wait (12 h, 24 h, 3 days), and the region (Virginia first; California, Texas, Germany and Britain also work).
+- **Custom jobs:** users can type their own run time in hours (1 to 12) and the energy it uses, instead of picking an appliance.
 - **Out:** one plain-English answer ("Start Friday, May 1 at 12 PM, about 12% cleaner than starting at midnight"; if no hour is much better it says green, start whenever, or red, wait longer), a green-to-red strip of the coming hours, and a hindsight check of what really happened.
 - **Under the hood:** a gradient-boosting forecast of the grid's hourly carbon intensity (grams of CO2 per kWh), made at 18:00 the evening before from the last week of grid data, demand forecasts and local weather forecasts.
 

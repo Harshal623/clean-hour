@@ -79,7 +79,7 @@ Owns: docs/CODE_REVIEW.md
 
 ## Shared / human-only
 - [ ] S1 Everyone: confirm names, school, emails on the form (Harshal Mahadik, Aarush Gutha, Sidharth Mantri, TJHSST; emails still needed)
-- [ ] S2 Run the notebook in Colab once (needs a Google login): open notebooks/clean_hour_colab.ipynb via the README link, Runtime > Run all. Locally verified (0 errors, numbers match the README); NOT yet run in real Colab
+- [ ] S2 Run the notebook in Colab once (needs a Google login): open notebooks/clean_hour_colab.ipynb via the README link, Runtime > Run all. Executed locally twice (0 errors, 12/12 cells with outputs, deterministic, offline). Last digits can sit up to ~2 g/kWh from the README because the boosting split depends on the scikit-learn version (noted in the notebook and README Limits). NOT yet run in real Colab.
 - [ ] S3 Open every link in incognito, then submit the form (one person submits)
 
 ## Decisions

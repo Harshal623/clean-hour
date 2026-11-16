@@ -3,10 +3,10 @@
 Form: https://airtable.com/appypCyHN77hElIcS/shrXA5VBFdugmoXl6   Deadline: Sun Nov 15, 11:59 PM ET (submit a first version 2+ hours earlier; resubmit freely).
 
 Project Title
-Clean-Hour: Cleaner Hours for Northern Virginia Homes and Loudoun Data Centers
+Clean-Hour: The Cleanest Hours to Charge, for Northern Virginia Homes
 
 One-Sentence Pitch
-Clean-Hour forecasts when Northern Virginia's power grid is cleanest so families and Loudoun's data centers can start flexible jobs at cleaner hours, and we test honestly where a forecast beats simple rules and whether the method works on four other grids.
+Clean-Hour tells a Northern Virginia family which hours tomorrow are cleanest for charging the car or running the dishwasher, and shows that a better carbon forecast is not automatically a better choice of hours: measured against what the family would really do (plug in at 6 PM) the advice is about 10-13% cleaner, it transfers to four other grids, and we report where it backfires.
 
 Track
 Climate

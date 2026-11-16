@@ -37,7 +37,16 @@ def clock(h):
 
 def when(j, release):
     d = release + pd.Timedelta(hours=int(j))
-    return f"{d.strftime('%A')} at {clock(d.hour)}"
+    return f"{d.strftime('%A, %b')} {d.day} at {clock(d.hour)}"
+
+
+def when_end(j, release):
+    """End time: just the clock if it is the same date as the start, else the full date."""
+    return when(j, release)
+
+
+def day_name(d):
+    return f"{d.strftime('%a %b')} {d.day}"
 
 
 def colour(v, lo, hi):
@@ -46,7 +55,7 @@ def colour(v, lo, hi):
     return f"rgb({r},{g},80)"
 
 
-def bar_html(prof, lo, hi, start, L, nshow):
+def bar_html(prof, lo, hi, start, L, nshow, release=None):
     rows = []
     n_days = int(np.ceil(nshow / 24))
     for d in range(n_days):
@@ -60,7 +69,8 @@ def bar_html(prof, lo, hi, start, L, nshow):
             border = "3px solid #111" if chosen else "1px solid white"
             cells.append(f"<div title='{clock(h)}: {prof[j]:.0f} g CO2 per kWh' style='flex:1;height:22px;"
                          f"background:{colour(prof[j], lo, hi)};border:{border};box-sizing:border-box'></div>")
-        rows.append(f"<div style='margin:3px 0'><div style='font-size:12px;color:#555'>Day {d + 1}</div>"
+        label = f"Day {d + 1}" + (f": {day_name(release + pd.Timedelta(days=d))}" if release is not None else "")
+        rows.append(f"<div style='margin:3px 0'><div style='font-size:12px;color:#555'>{label}</div>"
                     f"<div style='display:flex'>{''.join(cells)}</div></div>")
     scale = ("<div style='display:flex;justify-content:space-between;font-size:12px;color:#555;margin-top:2px'>"
              "<span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>11 PM</span></div>")
@@ -90,27 +100,47 @@ def advise(region, appliance, wait, day_label):
     gain_best = 100 * (now_act - cy[best]) / now_act
     grams = (now_act - cy[start]) * kwh
     release = pd.Timestamp(day)
-    if gain_pred < 3:
-        head = "No clear winner: start whenever suits you"
-        sub = "The forecast sees almost no difference between hours in this window."
-        start = 0
-    else:
+    typical = float(DF[DF.grid == g].clim.median())  # the region's usual intensity, g/kWh
+    frame_end = release + pd.Timedelta(hours=slip)
+    frame = f"{when(0, release)} to {when(slip, release)}"
+    moved = gain_pred >= 3
+    good_bg, good_bd, good_tx = "#eaf6ee", "#bfe3c9", "#14532d"
+    bad_bg, bad_bd, bad_tx = "#fdecea", "#f1b7b1", "#8a1c13"
+    bg, bd, tx = good_bg, good_bd, good_tx
+    if moved:
         end = start + L
         head = f"Start {when(start, release)}"
-        sub = (f"It will run until about {when(end, release).split(' at ')[1]}. "
+        sub = (f"It will run until about {when_end(end, release)}. "
                f"We expect that to be about <b>{gain_pred:.0f}% cleaner</b> than starting at midnight.")
+        if cp[start] > typical:
+            sub += (" Heads-up: even this is dirtier than usual for your region, so if you can wait longer, "
+                    "choose the 3-day option.")
+    else:
+        start = 0
+        if now_pred <= typical:
+            head = "Green: start whenever you like within your time frame"
+            sub = "Power is cleaner than usual all through your time frame, and no hour is much better than another."
+        else:
+            bg, bd, tx = bad_bg, bad_bd, bad_tx
+            head = "Red: if you can, wait longer"
+            sub = (f"Power is dirtier than usual across your whole time frame ({frame}) and no hour is much cleaner. "
+                   "Pick a longer wait (up to 3 days) to give the tool a cleaner window, or start now if it cannot wait.")
     lo, hi = np.percentile(p[:nshow], 5), np.percentile(p[:nshow], 95)
-    card = (f"<div style='padding:18px;border-radius:12px;background:#eaf6ee;border:1px solid #bfe3c9'>"
-            f"<div style='font-size:28px;font-weight:700;color:#14532d'>{head}</div>"
-            f"<div style='font-size:16px;margin-top:6px'>{sub}</div></div>")
+    card = (f"<div style='padding:18px;border-radius:12px;background:{bg};border:1px solid {bd}'>"
+            f"<div style='font-size:28px;font-weight:700;color:{tx}'>{head}</div>"
+            f"<div style='font-size:16px;margin-top:6px'>{sub}</div>"
+            f"<div style='font-size:13px;margin-top:6px;color:#555'>Your time frame: {frame}.</div></div>")
     forecast = (f"<h4 style='margin:16px 0 4px'>The forecast for the next {int(np.ceil(nshow / 24))} day(s)</h4>"
-                + bar_html(p, lo, hi, start, L, nshow))
-    looked_back = (f"<h4 style='margin:16px 0 4px'>What actually happened that day</h4>"
-                   f"<div style='font-size:15px'>Following the advice cut the CO2 of this run by "
-                   f"<b>{gain_act:.0f}%</b> compared with starting at midnight (the best possible choice, "
-                   f"with perfect hindsight, was {gain_best:.0f}%). "
-                   f"For a {kwh:g} kWh job that is about <b>{grams:,.0f} grams of CO2</b> avoided.</div>"
-                   + bar_html(y, lo, hi, start, L, nshow))
+                + bar_html(p, lo, hi, start, L, nshow, release))
+    if moved:
+        outcome = (f"Following the advice cut the CO2 of this run by <b>{gain_act:.0f}%</b> compared with starting "
+                   f"at midnight (the best possible choice, with perfect hindsight, was {gain_best:.0f}%). "
+                   f"For a {kwh:g} kWh job that is about <b>{grams:,.0f} grams of CO2</b> avoided.")
+    else:
+        outcome = (f"The advice was to start right away, so there is no saving to report; with perfect hindsight "
+                   f"the best choice in this window would have been {gain_best:.0f}% cleaner than midnight.")
+    looked_back = (f"<h4 style='margin:16px 0 4px'>What actually happened</h4>"
+                   f"<div style='font-size:15px'>{outcome}</div>" + bar_html(y, lo, hi, start, L, nshow, release))
     return card + forecast, looked_back
 
 
@@ -181,6 +211,7 @@ except Exception:  # live mode must never break the replay app
     _live = None
 
 if _live is not None:
+    _live.TYPICAL["Great Britain"] = float(DF[DF.grid == "gb"].y.median())
     with gr.Blocks(title="Clean-Hour live") as live_demo:
         gr.Markdown("### Live: the next 48 hours in Great Britain or Germany\nGreat Britain uses the official National Energy System Operator carbon forecast "
                     "(it beat our own model there in 2026 tests). Germany uses the Fraunhofer ISE renewable-share forecast (more wind and sun = cleaner). Needs internet.")

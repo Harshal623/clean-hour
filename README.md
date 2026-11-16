@@ -14,7 +14,7 @@ Electricity is not equally clean all day. The power plants that run at 7 PM are 
 ## What we built
 - **Who/when:** a Northern Virginia household (or a data-center operations lead) in the evening, deciding when to start something tomorrow, or within three days.
 - **In:** the appliance or job length, how long it can wait (12 h, 24 h, 3 days), and the region (Virginia first; California, Texas, Germany and Britain also work).
-- **Out:** one plain-English answer ("Start Friday at 2 PM, about 44% cleaner than starting at midnight"), a green-to-red strip of the coming hours, and a hindsight check of what really happened.
+- **Out:** one plain-English answer ("Start Friday, May 1 at 12 PM, about 12% cleaner than starting at midnight"; if no hour is much better it says green, start whenever, or red, wait longer), a green-to-red strip of the coming hours, and a hindsight check of what really happened.
 - **Under the hood:** a gradient-boosting forecast of the grid's hourly carbon intensity (grams of CO2 per kWh), made at 18:00 the evening before from the last week of grid data, demand forecasts and local weather forecasts.
 
 ## What we added

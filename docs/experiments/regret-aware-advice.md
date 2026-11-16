@@ -30,7 +30,7 @@ above our 0.5 limit.
 - Virginia and Britain are where the advice is sometimes harmful (6.8% and 13.4% of days). Agreement between forecasts catches about a third
   (Virginia) to two thirds (Britain) of those, at a small cost in average savings. That is a real trade-off a household can choose, but it is
   not a free win, and the tuning set is only 120 days.
-- Still not adopted into the app; the app keeps its simple "no clear winner" message for tiny predicted gains.
+- Still not adopted into the app; the app now says "Green: start whenever you like" or "Red: if you can, wait longer" when no hour is much better.
 
 ## Proposed README text (owner integrates; optional)
 "Where the advice is sometimes worse than starting at midnight (6.8% of days in Virginia, 13.4% in Britain), asking three forecasts to agree before acting

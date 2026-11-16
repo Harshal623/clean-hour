@@ -18,6 +18,9 @@ APPLIANCES = {"Charge my electric car": (4, 10.0), "Run the dishwasher": (2, 1.2
 WAIT = {"Up to 12 hours": 12, "Up to 24 hours": 24, "Up to 36 hours": 36}
 REGIONS = ["Great Britain", "Germany"]
 TZ = {"Great Britain": "Europe/London", "Germany": "Europe/Berlin"}
+# "Usual" level used for the green/red message. Great Britain: the app sets it to the median 2026 intensity (g/kWh);
+# Germany: 50% renewable share. If unset, the median of the forecast shown is used.
+TYPICAL = {"Great Britain": None, "Germany": 50.0}
 
 
 def fetch_forecast(now=None, timeout=10):
@@ -48,7 +51,7 @@ def _colour(v, lo, hi):
 
 def _label(ts, region="Great Britain"):
     t = ts.tz_convert(TZ[region])
-    return f"{t.strftime('%A')} at {(t.hour % 12) or 12} {'AM' if t.hour < 12 else 'PM'}"
+    return f"{t.strftime('%A, %b')} {t.day} at {(t.hour % 12) or 12} {'AM' if t.hour < 12 else 'PM'}"
 
 
 def advise_live(appliance, wait, region="Great Britain", series=None):
@@ -77,9 +80,23 @@ def advise_live(appliance, wait, region="Great Britain", series=None):
     else:
         gain = 100 * (c[0] - c[st]) / c[0]
         ok = gain >= 3
+    frame = f"{_label(h.index[0], region)} to {_label(h.index[min(len(h) - 1, slip)], region)}"
+    bg, bd, tx = "#eaf6ee", "#bfe3c9", "#14532d"
     if not ok:
-        head, sub = "No clear winner: start whenever suits you", "The forecast sees almost no difference in the next hours."
         st = 0
+        ref = TYPICAL.get(region)
+        if share_mode:
+            green = h.values[:L].mean() >= (ref if ref is not None else float(np.median(h.values)))
+        else:
+            green = c[0] <= (ref if ref is not None else float(np.median(h.values)))
+        if green:
+            head = "Green: start whenever you like within your time frame"
+            sub = f"Power looks cleaner than usual all through {frame}, and no hour is much better than another."
+        else:
+            bg, bd, tx = "#fdecea", "#f1b7b1", "#8a1c13"
+            head = "Red: if you can, wait longer"
+            sub = (f"Power looks dirtier than usual across {frame} and no hour is much cleaner. "
+                   "Pick a longer wait if you can, or start now if it cannot wait.")
     else:
         head = f"Start {_label(h.index[st], region)}"
         if share_mode:
@@ -98,9 +115,10 @@ def advise_live(appliance, wait, region="Great Britain", series=None):
         cells.append(f"<div title='{_label(ts, region)}: {x:.0f} {unit}' style='flex:1;min-width:8px;height:26px;"
                      f"background:{_colour(val, lo, hi)};border:{border};box-sizing:border-box'></div>")
     source = "Fraunhofer ISE Energy-Charts renewable-share forecast" if share_mode else "official NESO forecast"
-    return (f"<div style='padding:18px;border-radius:12px;background:#eaf6ee;border:1px solid #bfe3c9'>"
-            f"<div style='font-size:28px;font-weight:700;color:#14532d'>{head}</div>"
-            f"<div style='font-size:16px;margin-top:6px'>{sub}</div></div>"
+    return (f"<div style='padding:18px;border-radius:12px;background:{bg};border:1px solid {bd}'>"
+            f"<div style='font-size:28px;font-weight:700;color:{tx}'>{head}</div>"
+            f"<div style='font-size:16px;margin-top:6px'>{sub}</div>"
+            f"<div style='font-size:13px;margin-top:6px;color:#555'>Your time frame: {frame}.</div></div>"
             f"<h4 style='margin:16px 0 4px'>The next {len(h)} hours ({region}, {source})</h4>"
             f"<div style='display:flex'>{''.join(cells)}</div>"
             f"<div style='font-size:13px;margin-top:8px'><span style='color:#2a9d4a'>■</span> cleaner &nbsp;"

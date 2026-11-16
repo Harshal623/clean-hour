@@ -12,10 +12,11 @@ Track
 Climate
 
 Code Link
-https://github.com/Harshal623/clean-hour
+<your Colab share link: Share > Anyone with the link > Viewer. See submission/COLAB_ONLY_SUBMISSION.md. The notebook is self-contained, so the GitHub repo is only an optional backup>
 
 Write-up Link
-https://github.com/Harshal623/clean-hour/blob/main/submission/WRITEUP.md (one page, Veritas template; full detail in README.md)
+<the same Colab link, the write-up is in its first cells>
+Write-up File: also upload a PDF of the notebook (Colab: File > Print > Save as PDF) so the write-up requirement is clearly met.
 
 Demo Video Link
 <paste YouTube unlisted or Drive link after recording; script in docs/VIDEO_SCRIPT.md>

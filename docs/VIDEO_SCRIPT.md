@@ -21,7 +21,7 @@ Structure from the brief: problem 15 s, demo 60 s, how it works 30 s, next steps
 1. In a terminal at the repo root run `python app/app.py` and open http://127.0.0.1:7860 in Chrome. Zoom to 125%.
 2. Stay on the first tab, "Replay". Check the starting screen: region "Virginia / Mid-Atlantic, USA", appliance "Charge my electric car", wait "Until tomorrow (24 hours)", day "Fri 01 May 2026". The card should read **Start Friday, May 1 at 12 PM**, "about 12% cleaner".
 3. Leave the run-time box empty.
-4. Open a second Chrome tab with the notebook on GitHub: `https://github.com/Harshal623/clean-hour/blob/main/notebooks/clean_hour_colab.ipynb`. Scroll to the top so it is ready. (Do not run it on camera, it takes about 10 minutes.)
+4. Open a second Chrome tab with your saved Colab copy (the `colab.research.google.com/drive/...` link you will submit; see `submission/COLAB_ONLY_SUBMISSION.md`). It already holds the results after a full run, so do not run it on camera (it takes about 10 minutes). Scroll to the top so it is ready. Use this instead of the GitHub page, whose address contains a username.
 5. Close other tabs, turn off notifications, go back to the app tab, scroll to the top.
 
 ## 0:00-0:18 The problem

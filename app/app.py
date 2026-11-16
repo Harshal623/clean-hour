@@ -213,7 +213,15 @@ def advise(region, appliance, wait, day_label, custom_hours=None,
         + bar_html(forecast, lo, hi, start, hours, nshow, release)
     )
 
-    if moved:
+    if moved and gain_act < 0:
+        outcome = (
+            "This time the advice backfired: the run came out "
+            f"<b>{-gain_act:.0f}% dirtier</b> than starting at midnight "
+            f"(perfect hindsight would have been {gain_best:.0f}% "
+            f"cleaner). For a {kwh:g} kWh job that is about "
+            f"<b>{-grams:,.0f} grams of CO2</b> extra."
+        )
+    elif moved:
         outcome = (
             f"Following the advice cut the CO2 of this run by "
             f"<b>{gain_act:.0f}%</b> compared with starting at midnight "

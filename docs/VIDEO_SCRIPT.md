@@ -5,7 +5,7 @@ Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next 
 ## Setup before you hit record
 1. In a terminal at the repo root: `python app/app.py`. Open the local link (http://127.0.0.1:7860) in Chrome.
 2. Zoom the page to 125% (Cmd and +). Stay on the first tab, "Replay".
-3. Check the starting screen: region "Virginia / Mid-Atlantic, USA", appliance "Charge my electric car", wait "Until tomorrow (24 hours)", day "Fri 01 May 2026". The green card should read **Start Friday at 12 PM**.
+3. Check the starting screen: region "Virginia / Mid-Atlantic, USA", appliance "Charge my electric car", wait "Until tomorrow (24 hours)", day "Fri 01 May 2026". The green card should read **Start Friday, May 1 at 12 PM**.
 4. Open a second Chrome tab with the results chart: https://github.com/Harshal623/clean-hour/blob/main/results/experiments/torch_transformer/capture_24h.png
 5. Close other tabs and turn off notifications. Go back to the app tab and scroll to the top.
 
@@ -19,13 +19,13 @@ Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next 
 
 **Move 2 (0:27).** Slide the mouse along the colored strip and stop on the black outline. Say: "Green is cleaner." (optional)
 
-**Move 3 (0:33).** Click the bar "What actually happened that day? (hindsight check)".
+**Move 3 (0:33).** Click the bar "What actually happened? (hindsight check)".
 **Say:** "This is a real day from 2026 that the model never saw. Following the advice cut CO2 by 11%, which was the best possible."
 
-**Move 4 (0:43).** Scroll up. Click "I'm flexible: up to 3 days". Point at the card (Start Sunday at 12 PM).
+**Move 4 (0:43).** Scroll up. Click "I'm flexible: up to 3 days". Point at the card (Start Sunday, May 3 at 12 PM).
 **Say:** "If the car can wait three days, it picks Sunday at noon, and the real saving was 35%."
 
-**Move 5 (0:52).** Click the day box, type `09 Jan`, press Enter (Fri 09 Jan 2026). Point at the hindsight text showing -12%.
+**Move 5 (0:52).** Click the day box, type `09 Jan`, press Enter (Fri 09 Jan 2026). The hindsight bar stays open: it now says the run came out 12% dirtier.
 **Say:** "Here's where it fails. On January 9th it said Saturday at 1 AM, and that was actually 12% dirtier. The fuel mix shifted overnight. That's rare: compared with charging at 6 PM, the advice backfires on about 2% of days."
 
 **Move 6 (1:05).** Click "How accurate is this? (honest numbers)".

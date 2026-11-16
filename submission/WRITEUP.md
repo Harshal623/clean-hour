@@ -21,7 +21,7 @@
 | 72 h | 353.4 | 330.6 | **318.1** | 309.7 |
 
 - Against what the family would really do (plug in at 6 PM) the advice is **9.7% cleaner at 24 h and 12.7% at 72 h**; the Transformer reaches 13.4%, perfect hindsight 15.0%. That is about 106-139 kg CO2 a year for an EV.
-- Our first model cut hourly error by 35% versus "tomorrow = today" and still chose no better hours. The Transformer captures 89% of the possible saving versus 84%, but only in Virginia and Texas, so overall it is a tie. The method transfers: 33-53% cleaner at 24 h in Texas, Germany, Britain and California.
+- Our first model cut hourly error by 35% versus "tomorrow = today" and still chose no better hours. The Transformer captures 89% of the possible saving versus 84%, but only in Virginia and Texas, so overall it is a tie. The method transfers: 33-53% cleaner at 24 h in Texas, Germany, Britain and California, and Britain is where it matters most (28.8% saved against 3.8% for the simple rule).
 
 **Where it fails.** Worse than plugging in at 6 PM on 4.5% of days at 24 h and 2.3% at 72 h. On 9 Jan 2026 it recommended 1 AM, which was 12% dirtier than midnight after the fuel mix shifted overnight. Virginia's grid is flat, so perfect hindsight adds only 1.3% at 24 h. Our signal is the PJM-wide average, not marginal and not Loudoun-specific, and no real user has tested it. *This is a prototype, not energy or environmental advice.*
 

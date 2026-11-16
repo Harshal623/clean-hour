@@ -6,7 +6,7 @@ Project Title
 Clean-Hour: The Cleanest Hours to Charge, for Northern Virginia Homes
 
 One-Sentence Pitch
-Clean-Hour tells a Northern Virginia family which hours tomorrow are cleanest for charging the car or running the dishwasher, and shows that a better carbon forecast is not automatically a better choice of hours: measured against what the family would really do (plug in at 6 PM) the advice is about 10-13% cleaner, it transfers to four other grids, and we report where it backfires.
+Clean-Hour tells a Northern Virginia family which hours tomorrow are cleanest for charging the car or running the dishwasher, and shows that a better carbon forecast is not automatically a better choice of hours: against what the family would really do (plug in at 6 PM) the advice is about 10-13% cleaner, in wind-driven Britain it beats the simple rule by 30 g/kWh, and we report where it backfires.
 
 Track
 Climate

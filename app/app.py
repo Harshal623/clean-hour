@@ -128,7 +128,7 @@ def advise(region, appliance, wait, day_label):
     lo, hi = np.percentile(p[:nshow], 5), np.percentile(p[:nshow], 95)
     card = (f"<div style='padding:18px;border-radius:12px;background:{bg};border:1px solid {bd}'>"
             f"<div style='font-size:28px;font-weight:700;color:{tx}'>{head}</div>"
-            f"<div style='font-size:16px;margin-top:6px'>{sub}</div>"
+            f"<div style='font-size:16px;margin-top:6px;color:#1f2937'>{sub}</div>"
             f"<div style='font-size:13px;margin-top:6px;color:#555'>Your time frame: {frame}.</div></div>")
     forecast = (f"<h4 style='margin:16px 0 4px'>The forecast for the next {int(np.ceil(nshow / 24))} day(s)</h4>"
                 + bar_html(p, lo, hi, start, L, nshow, release))

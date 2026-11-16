@@ -117,7 +117,7 @@ def advise_live(appliance, wait, region="Great Britain", series=None):
     source = "Fraunhofer ISE Energy-Charts renewable-share forecast" if share_mode else "official NESO forecast"
     return (f"<div style='padding:18px;border-radius:12px;background:{bg};border:1px solid {bd}'>"
             f"<div style='font-size:28px;font-weight:700;color:{tx}'>{head}</div>"
-            f"<div style='font-size:16px;margin-top:6px'>{sub}</div>"
+            f"<div style='font-size:16px;margin-top:6px;color:#1f2937'>{sub}</div>"
             f"<div style='font-size:13px;margin-top:6px;color:#555'>Your time frame: {frame}.</div></div>"
             f"<h4 style='margin:16px 0 4px'>The next {len(h)} hours ({region}, {source})</h4>"
             f"<div style='display:flex'>{''.join(cells)}</div>"

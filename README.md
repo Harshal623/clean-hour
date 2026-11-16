@@ -3,6 +3,7 @@
 **Track:** Climate
 **Team:** Harshal Mahadik, Aarush Gutha, Sidharth Mantri (TJHSST)
 **Our place:** Northern Virginia on the PJM grid, home of Loudoun County's data-center corridor.
+**Run it in Google Colab (about 2 minutes, no downloads):** [Open in Colab](https://colab.research.google.com/github/Harshal623/clean-hour/blob/main/notebooks/clean_hour_colab.ipynb) (`notebooks/clean_hour_colab.ipynb`).
 **Demo:** `python app/app.py` (simple web app; a Replay tab tested on 2026 days and a Live tab for Great Britain (NESO's official carbon forecast) and Germany (renewable-share forecast)). **Notebook with outputs:** `notebooks/clean_hour.ipynb` (Virginia deep dive: `notebooks/virginia_deep_dive.ipynb`; PyTorch Transformer, run on a Colab GPU: `src/experiments/torch_transformer/colab.ipynb`). **One-page write-up:** `submission/WRITEUP.md`.
 
 > A forecast that predicts carbon better is not automatically better at choosing the cleanest hours. In Virginia, training a second stage to rank hours captured 91% of the best possible saving against 85% for the plain model; that gain did not transfer to California, Texas, Germany or Britain, and we report where it holds and where it does not.

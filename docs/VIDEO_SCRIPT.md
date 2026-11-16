@@ -15,7 +15,7 @@ Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next 
 
 ## 0:15-1:15 The demo
 **Move 1 (0:15).** Circle the mouse over the three inputs, then over the green card.
-**Say:** "A Northern Virginia family plugs in the car at 6 PM, and it can wait until tomorrow. Clean-Hour says: start Friday at noon, about 12% cleaner than midnight."
+**Say:** "A Northern Virginia family plugs in the car at 6 PM, and it can wait until tomorrow. Clean-Hour says: start Friday, May 1 at noon, about 12% cleaner than midnight."
 
 **Move 2 (0:27).** Slide the mouse along the colored strip and stop on the black outline. Say: "Green is cleaner." (optional)
 

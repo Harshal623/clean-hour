@@ -12,7 +12,7 @@ The power plants running at 7 PM are not the ones running at 2 AM, so the same E
 ## What we built
 **User and moment:** a Northern Virginia family at 6 PM, deciding when to charge the car. (The same forecast serves a Loudoun data center lead scheduling tomorrow's batch jobs.)
 **In:** the appliance, how long it can wait (12 h, 24 h or 3 days), and a day.
-**Out:** one answer, for example "Start Friday at 12 PM, about 12% cleaner than starting at midnight", a green-to-red strip of the coming hours, and a hindsight check of what really happened.
+**Out:** one answer, for example "Start Friday, May 1 at 12 PM, about 12% cleaner than starting at midnight" (or "Green: start whenever" / "Red: wait longer" when no hour stands out), a green-to-red strip of the coming hours, and a hindsight check of what really happened.
 
 ## What we added
 Our own idea, place (Northern Virginia, PJM grid) and data (EIA-930 fuel mix, demand forecasts, archived weather forecasts for Ashburn). Our own questions: is a better forecast a better choice of hours, and does the method hold up on four other grids?

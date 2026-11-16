@@ -115,10 +115,11 @@ def advise_live(appliance, wait, region="Great Britain", series=None):
         cells.append(f"<div title='{_label(ts, region)}: {x:.0f} {unit}' style='flex:1;min-width:8px;height:26px;"
                      f"background:{_colour(val, lo, hi)};border:{border};box-sizing:border-box'></div>")
     source = "Fraunhofer ISE Energy-Charts renewable-share forecast" if share_mode else "official NESO forecast"
+    sub_html = sub.replace('<b>', "<b style='color:" + tx + "'>")
     return (f"<div style='padding:18px;border-radius:12px;background:{bg};border:1px solid {bd}'>"
             f"<div style='font-size:28px;font-weight:700;color:{tx}'>{head}</div>"
-            f"<div style='font-size:16px;margin-top:6px;color:#1f2937'>{sub}</div>"
-            f"<div style='font-size:13px;margin-top:6px;color:#555'>Your time frame: {frame}.</div></div>"
+            f"<div style='font-size:16px;margin-top:6px;color:#1f2937'>{sub_html}</div>"
+            f"<div style='font-size:13px;margin-top:6px;color:#374151'>Your time frame: {frame}.</div></div>"
             f"<h4 style='margin:16px 0 4px'>The next {len(h)} hours ({region}, {source})</h4>"
             f"<div style='display:flex'>{''.join(cells)}</div>"
             f"<div style='font-size:13px;margin-top:8px'><span style='color:#2a9d4a'>■</span> cleaner &nbsp;"

@@ -126,10 +126,11 @@ def advise(region, appliance, wait, day_label):
             sub = (f"Power is dirtier than usual across your whole time frame ({frame}) and no hour is much cleaner. "
                    "Pick a longer wait (up to 3 days) to give the tool a cleaner window, or start now if it cannot wait.")
     lo, hi = np.percentile(p[:nshow], 5), np.percentile(p[:nshow], 95)
+    sub_html = sub.replace('<b>', "<b style='color:" + tx + "'>")
     card = (f"<div style='padding:18px;border-radius:12px;background:{bg};border:1px solid {bd}'>"
             f"<div style='font-size:28px;font-weight:700;color:{tx}'>{head}</div>"
-            f"<div style='font-size:16px;margin-top:6px;color:#1f2937'>{sub}</div>"
-            f"<div style='font-size:13px;margin-top:6px;color:#555'>Your time frame: {frame}.</div></div>")
+            f"<div style='font-size:16px;margin-top:6px;color:#1f2937'>{sub_html}</div>"
+            f"<div style='font-size:13px;margin-top:6px;color:#374151'>Your time frame: {frame}.</div></div>")
     forecast = (f"<h4 style='margin:16px 0 4px'>The forecast for the next {int(np.ceil(nshow / 24))} day(s)</h4>"
                 + bar_html(p, lo, hi, start, L, nshow, release))
     if moved:

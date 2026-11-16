@@ -1,5 +1,10 @@
 """Build notebooks/clean_hour_colab.ipynb, a notebook that needs nothing else.
 
+STOP: the notebook that ships today is the self-contained version (bundled data,
+write-up inline) and was NOT produced by this script. Running this overwrites it
+with the older 27-cell version and loses the bundled data, so do not run it during
+the submission window. Kept for reference only.
+
 The notebook carries its own data (a small bundle of public data), all
 of our code (pasted with %%writefile), and the write-up. Nobody has to
 open GitHub to read or run it.

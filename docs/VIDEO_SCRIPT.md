@@ -1,47 +1,75 @@
-# 2-minute demo video: exact clicks and words
+# 2-minute demo video: timeline, clicks and words (version 2)
 
-Follows the brief's structure: problem 15 s, demo 60 s, how it works 30 s, next steps 15 s. Screen recording with voice-over, one take. Round 1 is judged blind, so do not say or show names or the school.
+Structure from the brief: problem 15 s, demo 60 s, how it works 30 s, next steps 15 s. One screen recording with a voice-over, one take is fine. About 252 spoken words (roughly 1:45 of speech), leaving time for the clicks. Aim to finish at 1:55.
+
+**Round 1 is judged blind.** Do not say or show names or the school. The browser address bar for GitHub shows a username, so record the page content only (hide the address bar, or zoom the page so it is cropped out).
+
+## Timeline at a glance
+
+| Time | Screen | What you do |
+|---|---|---|
+| 0:00-0:18 | App, top of page | Say the problem. No clicks. |
+| 0:18-0:40 | App, Virginia default | Read the card, open the hindsight bar |
+| 0:40-0:52 | App, custom run time | Type 2 in the run-time box |
+| 0:52-1:10 | App, red then 3-day | Pick Thu 05 Mar, "Just tonight", then "up to 3 days" |
+| 1:10-1:20 | App, failure day | Pick Fri 09 Jan, show it backfired |
+| 1:20-1:30 | App, Live tab | Click Find the cleanest time now |
+| 1:30-1:50 | Notebook page | Scroll the code, stop on the results chart |
+| 1:50-2:00 | Same page | Say the limit and the takeaway |
 
 ## Setup before you hit record
-1. In a terminal at the repo root: `python app/app.py`. Open the local link (http://127.0.0.1:7860) in Chrome.
-2. Zoom the page to 125% (Cmd and +). Stay on the first tab, "Replay".
-3. Check the starting screen: region "Virginia / Mid-Atlantic, USA", appliance "Charge my electric car", wait "Until tomorrow (24 hours)", day "Fri 01 May 2026". The green card should read **Start Friday, May 1 at 12 PM**.
-4. Open a second Chrome tab with the results chart: https://github.com/Harshal623/clean-hour/blob/main/results/experiments/torch_transformer/capture_24h.png
-5. Close other tabs and turn off notifications. Go back to the app tab and scroll to the top.
+1. In a terminal at the repo root run `python app/app.py` and open http://127.0.0.1:7860 in Chrome. Zoom to 125%.
+2. Stay on the first tab, "Replay". Check the starting screen: region "Virginia / Mid-Atlantic, USA", appliance "Charge my electric car", wait "Until tomorrow (24 hours)", day "Fri 01 May 2026". The card should read **Start Friday, May 1 at 12 PM**, "about 12% cleaner".
+3. Leave the run-time box empty.
+4. Open a second Chrome tab with the notebook on GitHub: `https://github.com/Harshal623/clean-hour/blob/main/notebooks/clean_hour_colab.ipynb`. Scroll to the top so it is ready. (Do not run it on camera, it takes about 10 minutes.)
+5. Close other tabs, turn off notifications, go back to the app tab, scroll to the top.
 
-## 0:00-0:15 The problem
+## 0:00-0:18 The problem
 **Screen:** app, top of page. Do not click.
-**Say:** "We live next to Loudoun County, one of the biggest clusters of data centers in the world. The power plants running at 7 PM aren't the ones running at 2 AM, so the same EV charge can cause very different CO2. Nobody tells a family when the grid is cleanest. Clean-Hour does."
+**Say:** "We live next to Loudoun County, one of the biggest data center clusters in the world. The grid is dirtier at some hours than others, so the same EV charge can cause very different CO2. Nobody tells families when it's cleanest. Clean-Hour does."
 
-## 0:15-1:15 The demo
-**Move 1 (0:15).** Circle the mouse over the three inputs, then over the green card.
-**Say:** "A Northern Virginia family plugs in the car at 6 PM, and it can wait until tomorrow. Clean-Hour says: start Friday, May 1 at noon, about 12% cleaner than midnight."
+## 0:18-0:40 The answer (Virginia, 24 hours)
+**Screen:** circle the mouse over the three inputs, then the green card, then slide along the colored strip.
+**Say:** "A Northern Virginia family plugs in the car, and it can wait until tomorrow. Clean-Hour says: start Friday, May 1 at noon, about 12 percent cleaner than midnight."
+**Click:** the bar "What actually happened? (hindsight check)".
+**Say:** "And the check: on this real 2026 day, the advice cut CO2 by 11 percent, the best possible."
 
-**Move 2 (0:27).** Slide the mouse along the colored strip and stop on the black outline. Say: "Green is cleaner." (optional)
+## 0:40-0:52 Your own run time
+**Click:** the box "Or type your own run time" and type `2`.
+**Say:** "Not an EV? Type any run time. For a two-hour job: start at 1 PM, 13 percent cleaner."
+**Screen check:** the card should read **Start Friday, May 1 at 1 PM**, with "(2-hour job)" in the time-frame line. Clear the box before the next step.
 
-**Move 3 (0:33).** Click the bar "What actually happened? (hindsight check)".
-**Say:** "This is a real day from 2026 that the model never saw. Following the advice cut CO2 by 11%, which was the best possible."
+## 0:52-1:10 Green, red and waiting longer
+**Click:** the day box, type `05 Mar`, press Enter. Click "Just tonight (up to 12 hours)".
+**Say:** "On March 5th the power is dirty all night, so it says red: wait longer."
+**Click:** "I'm flexible: up to 3 days".
+**Say:** "With three days it picks Saturday at 2 AM, and the real saving was 14 percent."
+(Green case, if you want it: Sat 10 Jan with "Just tonight" says green, start whenever you like. Skip it if short on time.)
 
-**Move 4 (0:43).** Scroll up. Click "I'm flexible: up to 3 days". Point at the card (Start Sunday, May 3 at 12 PM).
-**Say:** "If the car can wait three days, it picks Sunday at noon, and the real saving was 35%."
+## 1:10-1:20 Where it fails
+**Click:** the day box, type `09 Jan`, press Enter (keep "up to 3 days").
+**Say:** "It isn't always right. On January 9th it backfired: 12 percent dirtier. That's rare, about 2 percent of days compared with charging at 6 PM."
+**Screen:** the hindsight bar stays open and says "This time the advice backfired".
 
-**Move 5 (0:52).** Click the day box, type `09 Jan`, press Enter (Fri 09 Jan 2026). The hindsight bar stays open: it now says the run came out 12% dirtier.
-**Say:** "Here's where it fails. On January 9th it said Saturday at 1 AM, and that was actually 12% dirtier. The fuel mix shifted overnight. That's rare: compared with charging at 6 PM, the advice backfires on about 2% of days."
+## 1:20-1:30 Live
+**Click:** the tab "Live: Great Britain and Germany", then "Find the cleanest time now".
+**Say:** "The Live tab does the same with today's official forecasts for Britain and Germany."
+(The result depends on the live forecast, so do not quote its numbers.)
 
-**Move 6 (1:05).** Click "How accurate is this? (honest numbers)".
-**Say:** "Across every day of 2026, that's 10% cleaner than midnight, and 13% cleaner than charging the moment you plug in at 6. Even perfect hindsight only gets 15."
+## 1:30-1:50 How it works
+**Screen:** switch to the notebook tab, scroll down through the code cells, slow down at the chart under "4. Results".
+**Say:** "All our code is in one notebook. We train on 2023 to 2025 and test on every day of 2026, never shuffled. With three days of slack we're 10 percent cleaner than midnight; a simple rule gets 6, perfect hindsight 12."
 
-## 1:15-1:45 How it works
-**Screen:** switch to the chart tab at 1:15. Point at the Virginia bars when you mention them.
-**Say:** "We train on public grid data from 2023 to 2025 and test on 2026, never shuffled. With three days of slack we clearly beat the 'tomorrow equals today' baseline. With one day it's nearly a tie. Our surprise: a model with lower error did not pick better hours. So we trained a Transformer in PyTorch that sees all 76 hours at once. In Virginia it captures 89% of the best possible saving, up from 84."
-
-## 1:45-2:00 One limit and next steps
+## 1:50-2:00 Limit and takeaway
 **Screen:** stay on the chart.
-**Say:** "One limit: this is the regional grid average, not the exact plant that ramps up. Next: live data, and a test with a real family and a data center operator. The takeaway: a better forecast is not automatically a better choice."
+**Say:** "One limit: this is the grid average, not the exact plant that ramps up. Next: live Virginia data and a real family test. Shifting helps, but a better forecast isn't automatically a better choice."
+
+## If you run long
+Cut in this order: the green-case line, the Live tab (1:20-1:30), then the custom run-time moment. Never cut the failure day, judges reward honesty.
 
 ## After recording
-- Keep it under 2:00 (the script is about 290 spoken words). If you run long, cut Move 6.
-- Upload to YouTube as Unlisted (or Drive with "anyone with the link can view"), then open the link in an incognito window.
-- Paste the link into the form.
+- Under 2:00. Upload to YouTube as Unlisted (or Drive with "anyone with the link can view") and open the link in an incognito window.
+- Paste the link into the form's "Demo Video Link".
 
-Numbers in this script were checked against the app and the results files on Nov 15: May 1 gives 12% predicted and 11% actual at 24 h, 35% actual at 3 days; Jan 9 gives -12% at 3 days; the Virginia scorecard at 3 days shows 353, 318 (10%), 331 (6%) and 310 (12%). The 6 PM numbers (12.7%, rounded to 13; 15.0% for hindsight; 2.3% of days) are in `results/experiments/plug_in_baseline.csv` and are spoken, not shown on screen.
+## What was checked (Nov 15, 8:30 PM)
+Every number above was read from the running app code: May 1 gives 12% predicted and 11% actual at 24 h; a 2-hour job starts at 1 PM with 13% predicted; Mar 5 with "Just tonight" is red, and with 3 days says Start Saturday, Mar 7 at 2 AM with 14% actual; Jan 9 with 3 days says 12% dirtier; the Virginia 3-day scorecard shows 10% (advice), 6% (simple rule) and 12% (perfect hindsight). The "about 2 percent of days" figure comes from `results/experiments/plug_in_baseline.csv` (2.3% of days worse than a 6 PM plug-in at 72 h) and is spoken, not shown.

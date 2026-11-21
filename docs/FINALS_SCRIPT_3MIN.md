@@ -3,7 +3,7 @@
 Finals: Saturday, Nov 21, 11:00 AM ET. One presenter, three minutes, then Q&A.
 **The slides do not change.** Same seven slides, same order, same two Colab moments — only the words are shorter.
 
-Spoken length: 404 words, about 2:55 at a calm 140 words per minute, with time built in for two tab switches.
+Spoken length: 408 words — 2:55 at 140 words per minute, 2:43 at 150, leaving 5 to 12 seconds for the two tab switches. If you speak slower than 140, take the first cut in "If you run long".
 
 ## Timeline
 
@@ -23,13 +23,13 @@ Spoken length: 404 words, about 2:55 at a calm 140 words per minute, with time b
 Hi, I'm Aarush. With Harshal and Sidharth I built Clean-Hour: a forecast for the cleanest hour to start a job that can wait. We're from Northern Virginia.
 
 **Slide 2 — 0:11**
-Electricity isn't equally clean all day: the plants running at 7 PM aren't the ones at 2 AM, so the same car charge can be much dirtier at one hour than another. Families face this nightly, and so does Loudoun County, one of the biggest data-center clusters in the world. Nobody tells them when the clean hour is. Our decision: when to start a flexible job.
+Electricity isn't equally clean all day: the plants running at 7 PM aren't the ones at 2 AM, so the same car charge can be far dirtier at one hour than another. Families face this nightly, and so does Loudoun County, the biggest data-center cluster in the world. Nobody tells them when the clean hour is. Our decision: when to start a flexible job.
 
 **Slide 3 — 0:37**
-Here's the pipeline. Public data: the federal EIA's hourly fuel mix for our grid, PJM, plus Ashburn weather forecasts, turned into grams of CO2 per kilowatt-hour. Every evening at 6 PM a gradient-boosting model forecasts that for the next 76 hours — three days of waiting plus a four-hour job. Then we pick the cleanest window and score it against what happened.
+The pipeline: the federal EIA's hourly fuel mix for our grid, PJM, plus Ashburn weather forecasts, turned into grams of CO2 per kilowatt-hour. Every evening at 6 PM a gradient-boosting model forecasts that for the next 76 hours — three days of waiting plus a four-hour job. Then we pick the cleanest window and score it against what happened.
 
 **Slide 4 — 1:03**
-Three design choices. First, only what you'd know at 6 PM: last week of grid data, demand forecasts, Ashburn weather. Second, we predict how tomorrow differs from that hour's recent average, not the raw level — the level version lost to repeating yesterday. Third, trained 2023 to 2025, tested once on all of 2026, never shuffled.
+Three design choices. First, only what you'd know at 6 PM. Second, we predict how tomorrow differs from that hour's recent average, not the raw level — the level version lost to repeating yesterday. Third, trained 2023 to 2025, tested once on all of 2026, never shuffled.
 
 *[Colab tab: features and training cell]* The features and fixed settings, in the notebook we submitted. *[Back to slides]*
 

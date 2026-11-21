@@ -294,7 +294,7 @@ LIMITS = (
     "guarantee."
 )
 
-with gr.Blocks(title="Clean-Hour") as demo:
+with gr.Blocks(title="Clean-Hour", theme=gr.themes.Soft(primary_hue="green")) as demo:
     gr.Markdown(INTRO)
     with gr.Column(scale=1):
         region = gr.Dropdown(
@@ -420,9 +420,10 @@ if live is not None:
             "Live: Great Britain and Germany",
         ],
         title=None,
+        theme=gr.themes.Soft(primary_hue="green"),
     )
 else:
     app = demo
 
 if __name__ == "__main__":
-    app.launch(theme=gr.themes.Soft(primary_hue="green"))
+    app.launch()
